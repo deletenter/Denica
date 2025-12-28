@@ -1,0 +1,135 @@
+<?php
+session_start(); 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denica Perfumery | Proudly Malaysian</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="promo-banner">
+        END OF SEASON SALE UP TO 40% OFF 
+    </div>
+
+    <header class="global-header">
+        <div class="header-container">
+            <a href="index.php" class="brand-identity">Denica</a> 
+            
+            <nav class="main-nav">
+                <a href="products.php">Perfumes</a>
+                <a href="discovery.php">Discovery</a> 
+            </nav>
+
+            <div class="search-bar">
+                <form action="search.php" method="GET">
+                    <input type="text" placeholder="Search" name="query"> 
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="header-utilities">
+                <a href="cart.php" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">2</span> 
+                </a>
+                <a href="login.php" class="profile-link">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <h1>Proudly Malaysian.</h1> 
+            <p class="subtitle">Discover and shop curated local fragrances — all in one place.</p>
+            
+            <div class="hero-action">
+                <button class="btn-outline">Shop All</button> 
+            </div>
+
+            <div class="hero-image-placeholder"></div>
+
+            <div class="brand-logo-grid">
+                <div class="logo-item"><img src="medin_logo.png" alt="Médin Fragrance"></div>
+                <div class="logo-item"><img src="szindore_logo.png" alt="Szindore"></div>
+                <div class="logo-item"><img src="toxic_logo.png" alt="The Toxic Lab"></div>
+            </div>
+        </section>
+
+        <section class="about-us">
+            <div class="about-header-bar">
+                <h2>About Us</h2>
+            </div>
+            
+            <div class="about-content">
+                <p>
+                    Denica Perfumery is where discovering your perfect scent feels effortless. We curate authentic local 
+                    perfumes in one refined space, making it easy to explore, match, and shop fragrances that truly reflect 
+                    you.
+                </p>
+                <p>
+                    Finding perfume online doesn't have to be complicated. With personalized scent matching, discovery 
+                    tools, and trusted reviews, Denica guides you gently toward fragrances you'll love — no guessing, no 
+                    overwhelm. From first discovery to seamless checkout, every step is designed to feel smooth, 
+                    intentional, and indulgent.
+                </p>
+                <p>
+                    Whether you're searching for a signature scent or exploring something new, Denica offers a curated 
+                    experience where luxury meets ease — thoughtfully selected, quietly confident, and effortlessly 
+                    Malaysian.
+                </p>
+                
+                <div class="about-footer">
+                    <button class="btn-journey">Start your journey now</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-subscribe">
+                <h3>Subscribe for exclusivity:</h3>
+                <p>Be the first to know about our special offers, new product launches, and events</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Medin Fragrance</a></li>
+                        <li><a href="#">Szindore</a></li>
+                        <li><a href="#">The Toxic Lab</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-group">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-group">
+                    <h4>Staff</h4>
+                    <ul>
+                        <li><a href="admin_login.php">Admin Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
