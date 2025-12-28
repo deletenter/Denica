@@ -1,6 +1,4 @@
 <?php
-// TMF3963 Web Application Development - Denica Perfumery
-// Main Entry File: index.php
 session_start(); 
 ?>
 <!DOCTYPE html>
@@ -134,4 +132,5 @@ session_start();
     </footer>
 
 </body>
+
 </html>
