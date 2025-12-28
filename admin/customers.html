@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica Admin - Customer Management</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">Denica</div>
+        <nav>
+            <a href="products.html">Products</a>
+            <a href="customers.html" class="active">Customers</a>
+            <a href="orders.html">Orders</a>
+        </nav>
+        <div class="admin-profile">👤</div>
+    </header>
+
+    <section class="management-bar">
+        <h1>Customer Management</h1>
+        <div class="search-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Find Customer...">
+        </div>
+    </section>
+
+    <main class="admin-content">
+        <div class="action-row">
+            <div class="sort-dropdown">Sort by: <strong>Date Joined</strong> ▾</div>
+            <div class="table-utilities">
+                <button onclick="window.print()">🖨️</button> <button>📊</button> </div>
+        </div>
+
+        <table class="srs-table">
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Date Joined</th>
+                    <th>Total Orders</th>
+                    <th>Account Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>97263</td>
+                    <td>Amisha Jembu Iloh</td>
+                    <td>97263@unimas.my</td>
+                    <td>24-12-2025</td>
+                    <td>3</td>
+                    <td><span class="status-active">Active</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

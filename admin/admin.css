@@ -1,0 +1,256 @@
+/* --- Global Styles --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8; /* Light gray background seen in SRS */
+    color: #333;
+}
+
+/* --- Global Header (Black Top Bar) --- */
+.main-header { 
+    background: #000; 
+    color: #fff; 
+    padding: 12px 50px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .logo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.main-header nav a { 
+    color: #888; 
+    text-decoration: none; 
+    margin: 0 15px; 
+    font-size: 14px; 
+    transition: 0.3s;
+}
+
+.main-header nav a:hover, .main-header nav a.active { 
+    color: #fff; 
+}
+
+.admin-profile { 
+    font-size: 18px; 
+    cursor: pointer; 
+}
+
+/* --- Dark Management Bar (Title & Search) --- */
+.management-bar { 
+    background: #1a1a1a; /* Dark gray section from Figure 21 */
+    color: white; 
+    padding: 35px 50px; 
+}
+
+.management-bar h1 { 
+    margin: 0 0 15px 0; 
+    font-size: 24px; 
+    font-weight: 500; 
+}
+
+.search-box { 
+    background: #000; 
+    padding: 8px 12px; 
+    width: 320px; 
+    border: 1px solid #333;
+    display: flex; 
+    align-items: center;
+    border-radius: 2px;
+}
+
+.search-box input { 
+    background: transparent; 
+    border: none; 
+    color: white; 
+    margin-left: 10px; 
+    width: 100%; 
+    outline: none;
+}
+
+/* --- Main Content Layout --- */
+.admin-content { 
+    padding: 25px 50px; 
+}
+
+.action-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px; 
+}
+
+.sort-dropdown {
+    font-size: 14px;
+    color: #666;
+}
+
+.add-btn { 
+    background: #fff; 
+    color: #000; 
+    padding: 8px 16px; 
+    border: 1px solid #ccc; 
+    cursor: pointer; 
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.add-btn:hover {
+    background: #eee;
+}
+
+/* --- SRS Tables (Figures 21, 23, 24) --- */
+.srs-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: white; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.srs-table th { 
+    background: #f8f9fa; 
+    padding: 12px; 
+    text-align: left; 
+    font-size: 12px; 
+    color: #555; 
+    border-bottom: 2px solid #eee;
+    text-transform: uppercase;
+}
+
+.srs-table td { 
+    padding: 15px; 
+    border-bottom: 1px solid #eee; 
+    font-size: 13px; 
+}
+
+.img-placeholder {
+    width: 40px;
+    height: 40px;
+    background: #e0e0e0;
+    border-radius: 4px;
+}
+
+/* --- Filter Tabs (Specific for Order Management Fig 24) --- */
+.filter-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.tab {
+    padding: 8px 25px;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.tab.active {
+    background: #000;
+    color: #fff;
+}
+
+/* --- Status Labels --- */
+.status-active { color: #1565c0; font-weight: bold; }
+.status-completed { color: #2e7d32; font-weight: bold; }
+
+/* --- Table Utilities (Print/Export Icons) --- */
+.table-utilities button {
+    background: none;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.table-utilities button:hover {
+    background: #eee;
+}
+
+/* --- Add Product Modal (Figure 22) --- */
+.modal { 
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.6); 
+    justify-content: center; 
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-card { 
+    background: #f4f6f8; 
+    width: 850px; 
+    padding: 30px; 
+    border-radius: 2px;
+    position: relative;
+}
+
+.modal-body { 
+    display: flex; 
+    gap: 30px; 
+    margin-top: 20px;
+}
+
+.upload-section { 
+    flex: 1; 
+}
+
+.upload-box { 
+    background: #ccc; 
+    height: 320px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    color: #555;
+    border: 2px dashed #999;
+}
+
+.product-form { 
+    flex: 1.5; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.product-form input, .product-form select, .product-form textarea { 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 2px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.confirm-btn { 
+    background: #000; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none; 
+    cursor: pointer; 
+    flex: 2;
+}
+
+.cancel-btn { 
+    background: white; 
+    border: 1px solid #ccc; 
+    padding: 12px 20px; 
+    cursor: pointer; 
+    flex: 1;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica Admin - Order Management</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">Denica</div>
+        <nav>
+            <a href="products.html">Products</a>
+            <a href="customers.html">Customers</a>
+            <a href="orders.html" class="active">Orders</a>
+        </nav>
+        <div class="admin-profile">👤</div>
+    </header>
+
+    <section class="management-bar">
+        <h1>Order Management</h1>
+        <div class="search-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Find Order...">
+        </div>
+    </section>
+
+    <main class="admin-content">
+        <div class="filter-tabs">
+            <button class="tab active">All</button>
+            <button class="tab">Daily</button>
+            <button class="tab">Weekly</button>
+            <button class="tab">Monthly</button>
+        </div>
+
+        <div class="action-row">
+            <div class="sort-dropdown">Sort by: <strong>Date & Time</strong> ▾</div>
+            <div class="table-utilities">
+                <button onclick="window.print()">🖨️</button>
+                <button>📊</button>
+            </div>
+        </div>
+
+        <table class="srs-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date & Time</th>
+                    <th>Customer</th>
+                    <th>Items Sold</th>
+                    <th>Grand Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LX-1001</td>
+                    <td>28-12-2025 14:30</td>
+                    <td>Amisha Jembu Iloh</td>
+                    <td>2</td>
+                    <td>RM 258.00</td>
+                    <td><span class="status-completed">Completed</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
