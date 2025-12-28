@@ -105,7 +105,7 @@ body {
     background: #eee;
 }
 
-/* --- SRS Tables (Figures 21, 23, 24) --- */
+/* --- SRS Tables  --- */
 .srs-table { 
     width: 100%; 
     border-collapse: collapse; 
@@ -136,7 +136,7 @@ body {
     border-radius: 4px;
 }
 
-/* --- Filter Tabs (Specific for Order Management Fig 24) --- */
+/* --- Filter Tabs  --- */
 .filter-tabs {
     display: flex;
     gap: 5px;
@@ -253,4 +253,45 @@ body {
     padding: 12px 20px; 
     cursor: pointer; 
     flex: 1;
+}
+
+/* Stats Cards for Dashboard */
+.stats-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    flex: 1;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-top: 4px solid #1a1a1a; /* Matches management bar */
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.stat-card a {
+    font-size: 12px;
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.recent-activity h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
 }
