@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denica - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="register-container">
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">Login with your email</p> 
+        
+        <form id="loginForm" novalidate>
+            
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email">
+                <div class="error-message" id="emailError">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password">
+                <div class="error-message" id="passwordError">Please enter your password.</div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn-continue">Login</button>
+        </form>
+
+        <a href="registration.html">New here? <strong>Register now!</strong></a>
+    </div>
+
+<script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('invalid'));
+
+            // 1. Validate Email
+            const email = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value.trim())) {
+                showError(email, 'emailError');
+                isValid = false;
+            }
+
+            // 2. Validate Password
+            const password = document.getElementById('password');
+            if (password.value.trim() === "") {
+                showError(password, 'passwordError');
+                isValid = false;
+            }
+
+            // --- CONNECT TO BACKEND ---
+            if (isValid) {
+                const payload = {
+                    email: email.value,
+                    password: password.value
+                };
+
+                // NOTE: Ask for the correct URL (e.g., localhost:3000/login)
+                fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Success! Redirect to the dashboard/home page
+                        window.location.href = 'dashboard.html'; 
+                    } else {
+                        // Failed (wrong password, etc.)
+                        alert("Login Failed: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Could not connect to the backend server.");
+                });
+            }
+        });
+
+        function showError(inputElement, errorId) {
+            inputElement.classList.add('invalid');
+            document.getElementById(errorId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
