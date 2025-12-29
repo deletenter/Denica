@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denica - Register</title>
+    <style>
+        /* General Reset and Font */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Card Container */
+        .register-container {
+            background-color: #ffffff;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 28px;
+            color: #000;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #333;
+        }
+
+        /* Validation Error Styling */
+        .error-message {
+            color: #d93025;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+
+        input.invalid {
+            border-color: #d93025;
+        }
+
+        /* Remember Me Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .checkbox-group input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* Button Styling */
+        .btn-continue {
+            width: 150px;
+            padding: 12px;
+            background-color: #f0f0f5; /* Light grey per wireframe */
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-continue:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Footer Link */
+        .login-link {
+            font-size: 14px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .login-link strong {
+            color: #555;
+            font-weight: 600;
+        }
+
+        .login-link:hover strong {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h1>Welcome!</h1>
+        <p class="subtitle">Register with email</p> <form id="registrationForm" novalidate>
+            
+            <div class="form-group">
+                <input type="text" id="fullName" placeholder="Full Name">
+                <div class="error-message" id="nameError">Please enter your full name.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email">
+                <div class="error-message" id="emailError">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password">
+                <div class="error-message" id="passwordError">Password must be at least 6 characters.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="confirmPassword" placeholder="Re-enter Password">
+                <div class="error-message" id="confirmPasswordError">Passwords do not match.</div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn-continue">Continue</button>
+        </form>
+
+        <a href="#" class="login-link">Have an account? <strong>Login now!</strong></a>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent actual form submission
+            
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('invalid'));
+
+            // 1. Validate Full Name
+            const fullName = document.getElementById('fullName');
+            if (fullName.value.trim() === "") {
+                showError(fullName, 'nameError');
+                isValid = false;
+            }
+
+            // 2. Validate Email
+            const email = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value.trim())) {
+                showError(email, 'emailError');
+                isValid = false;
+            }
+
+            // 3. Validate Password
+            const password = document.getElementById('password');
+            if (password.value.length < 6) {
+                showError(password, 'passwordError');
+                isValid = false;
+            }
+
+            // 4. Validate Re-enter Password
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (confirmPassword.value !== password.value || confirmPassword.value === "") {
+                showError(confirmPassword, 'confirmPasswordError');
+                isValid = false;
+            }
+
+            // Success Logic
+            if (isValid) {
+                alert('Registration Successful! (Demo)');
+                // Here you would typically send data to the backend
+            }
+        });
+
+        function showError(inputElement, errorId) {
+            inputElement.classList.add('invalid');
+            document.getElementById(errorId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
