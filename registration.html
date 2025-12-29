@@ -10,20 +10,20 @@
 
     <div class="register-container">
         <h1>Welcome!</h1>
-        <p class="subtitle">Register with email</p> <form id="registrationForm" novalidate>
-            
+        <form action="customerData.php" method="post" id="registrationForm" novalidate>
+
             <div class="form-group">
-                <input type="text" id="fullName" placeholder="Full Name">
+                <input type="text" id="fullName" name="name" placeholder="Full Name">
                 <div class="error-message" id="nameError">Please enter your full name.</div>
             </div>
 
             <div class="form-group">
-                <input type="email" id="email" placeholder="Email">
+                <input type="email" id="email" name="email" placeholder="Email">
                 <div class="error-message" id="emailError">Please enter a valid email address.</div>
             </div>
 
             <div class="form-group">
-                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="password" name="password" placeholder="Password">
                 <div class="error-message" id="passwordError">Password must be at least 6 characters.</div>
             </div>
 
@@ -32,14 +32,9 @@
                 <div class="error-message" id="confirmPasswordError">Passwords do not match.</div>
             </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="rememberMe">
-                <label for="rememberMe">Remember me</label>
-            </div>
-
-            <button type="submit" class="btn-continue">Continue</button>
+            <button type="submit">Continue</button>
         </form>
-
+        
         <a href="login.html" class="login-link">Have an account? <strong>Login now!</strong></a>
     </div>
 
