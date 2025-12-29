@@ -8,109 +8,75 @@
 </head>
 <body>
 
-    <div class="register-container">
-        <h1>Welcome!</h1>
-        <form action="customerData.php" method="post" id="registrationForm" novalidate>
+<div class="register-container">
+    <h2>Register</h2>
 
-            <div class="form-group">
-                <input type="text" id="fullName" name="name" placeholder="Full Name">
-                <div class="error-message" id="nameError">Please enter your full name.</div>
-            </div>
+    <form action="customerData.php" method="post" id="registrationForm" novalidate>
 
-            <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Email">
-                <div class="error-message" id="emailError">Please enter a valid email address.</div>
-            </div>
+        <div class="form-group">
+            <input type="text" id="fullName" name="name" placeholder="Full Name">
+            <div class="error-message" id="nameError">Please enter your full name</div>
+        </div>
 
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Password">
-                <div class="error-message" id="passwordError">Password must be at least 6 characters.</div>
-            </div>
+        <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email">
+            <div class="error-message" id="emailError">Invalid email</div>
+        </div>
 
-            <div class="form-group">
-                <input type="password" id="confirmPassword" placeholder="Re-enter Password">
-                <div class="error-message" id="confirmPasswordError">Passwords do not match.</div>
-            </div>
+        <div class="form-group">
+            <input type="password" id="password" name="password" placeholder="Password">
+            <div class="error-message" id="passwordError">Minimum 6 characters</div>
+        </div>
 
-            <button type="submit">Continue</button>
-        </form>
-        
-        <a href="login.html" class="login-link">Have an account? <strong>Login now!</strong></a>
-    </div>
+        <div class="form-group">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password">
+            <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+        </div>
 
-    <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent actual form submission
-            
-            let isValid = true;
+        <button type="submit">Continue</button>
+    </form>
 
-            // Clear previous errors
-            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('input').forEach(el => el.classList.remove('invalid'));
+    <a href="login.html">Already have an account? Login</a>
+</div>
 
-            // 1. Validate Full Name
-            const fullName = document.getElementById('fullName');
-            if (fullName.value.trim() === "") {
-                showError(fullName, 'nameError');
-                isValid = false;
-            }
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function (e) {
 
-            // 2. Validate Email
-            const email = document.getElementById('email');
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email.value.trim())) {
-                showError(email, 'emailError');
-                isValid = false;
-            }
+    let isValid = true;
 
-            // 3. Validate Password
-            const password = document.getElementById('password');
-            if (password.value.length < 6) {
-                showError(password, 'passwordError');
-                isValid = false;
-            }
+    document.querySelectorAll(".error-message").forEach(el => el.style.display = "none");
 
-            // 4. Validate Re-enter Password
-            const confirmPassword = document.getElementById('confirmPassword');
-            if (confirmPassword.value !== password.value || confirmPassword.value === "") {
-                showError(confirmPassword, 'confirmPasswordError');
-                isValid = false;
-            }
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-            // Success Logic
-            if (isValid) {
-                const payload = {
-                    fullName: fullName.value,
-                    email: email.value,
-                    password: password.value
-                };
+    if (fullName === "") {
+        document.getElementById("nameError").style.display = "block";
+        isValid = false;
+    }
 
-                fetch('http://localhost:3000/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert("success: " + data.message);
-                        // Optional: Redirect to login page
-                        // window.location.href = 'login.html';
-                    } else {
-                        alert("error: " + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("Could not connect to the backend.");
-                });
-            }
-        });
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById("emailError").style.display = "block";
+        isValid = false;
+    }
 
-        function showError(inputElement, errorId) {
-            inputElement.classList.add('invalid');
-            document.getElementById(errorId).style.display = 'block';
-        }
-    </script>
+    if (password.length < 6) {
+        document.getElementById("passwordError").style.display = "block";
+        isValid = false;
+    }
+
+    if (password !== confirmPassword) {
+        document.getElementById("confirmPasswordError").style.display = "block";
+        isValid = false;
+    }
+
+    if (!isValid) {
+        e.preventDefault(); // stop submit only if invalid
+    }
+});
+</script>
+
 </body>
 </html>

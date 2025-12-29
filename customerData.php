@@ -1,7 +1,7 @@
 <?php
 $databaseHost = 'localhost';
-$databaseName = 'customer';
-$databaseUsername = 'denica';
+$databaseName = 'denica';
+$databaseUsername = 'root';
 $databasePassword = '';
 
 $conn = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
@@ -10,22 +10,37 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    // Must match registration.html input name attributes
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $passwordRaw = $_POST['password'] ?? '';
 
+    if ($name === '' || $email === '' || $passwordRaw === '') {
+        die("Missing form data");
+    } 
+
+    // Hash password securely
+    $passwordHash = password_hash($passwordRaw, PASSWORD_DEFAULT);
+
+    // Insert into table
     $stmt = $conn->prepare("INSERT INTO customer (Name, Email, PasswordHash) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $name, $email, $password);
+
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+
+    $stmt->bind_param("sss", $name, $email, $passwordHash);
 
     if ($stmt->execute()) {
-        echo "Registration successful";
+        echo "INSERT SUCCESS";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "INSERT FAILED: " . $stmt->error;
     }
 
     $stmt->close();
-    $conn->close();
 }
+
+$conn->close();
 ?>
