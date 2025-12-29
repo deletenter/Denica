@@ -3,40 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denica Perfumery - Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Denica - Login</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Basic styling to match your prototype SRS Figure 6 */
+        body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .login-card h2 { margin-bottom: 20px; color: #333; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 14px; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        .login-btn { width: 100%; padding: 10px; background-color: #000; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+        .footer-links { margin-top: 20px; font-size: 13px; }
+        .admin-section { margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px; }
+        .admin-link { color: #d9534f; text-decoration: none; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <h1>Welcome Back!</h1>
-        <p class="subtitle">Login with email</p> 
-        
-        <form id="loginForm">
+    <div class="login-card">
+        <h2>Customer Login</h2>
+        <form action="login_process.php" method="POST">
             <div class="form-group">
-                <input type="email" id="email" placeholder="Email" required>
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="email@example.com" required>
             </div>
-
             <div class="form-group">
-                <input type="password" id="password" placeholder="Password" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="••••••••" required>
             </div>
-
-            <div class="login-options">
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rememberMe">
-                    <label for="rememberMe">Remember me</label>
-                </div>
-                <a href="#" class="forgot-link">Forgot Password?</a>
-            </div>
-
-            <button type="submit" class="btn-continue">Continue</button>
+            <button type="submit" class="login-btn">Login</button>
         </form>
 
-        <p class="footer-link">Or create an account: <a href="registration.html"><strong>Register</strong></a></p>
-        
-        <p class="admin-link">
+        <div class="footer-links" style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px; text-align: center;">
+    <p>Staff access only?</p>
+    <p class="admin-link">
     <a href="admin/admin_login.html">Admin Login</a>
 </p>
+</div>
     </div>
 
 </body>
