@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denica - Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="register-container">
+        <h1>Welcome!</h1>
+        <p class="subtitle">Register with email</p> <form id="registrationForm" novalidate>
+            
+            <div class="form-group">
+                <input type="text" id="fullName" placeholder="Full Name">
+                <div class="error-message" id="nameError">Please enter your full name.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email">
+                <div class="error-message" id="emailError">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password">
+                <div class="error-message" id="passwordError">Password must be at least 6 characters.</div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="confirmPassword" placeholder="Re-enter Password">
+                <div class="error-message" id="confirmPasswordError">Passwords do not match.</div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn-continue">Continue</button>
+        </form>
+
+        <a href="login.html" class="login-link">Have an account? <strong>Login now!</strong></a>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent actual form submission
+            
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('invalid'));
+
+            // 1. Validate Full Name
+            const fullName = document.getElementById('fullName');
+            if (fullName.value.trim() === "") {
+                showError(fullName, 'nameError');
+                isValid = false;
+            }
+
+            // 2. Validate Email
+            const email = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value.trim())) {
+                showError(email, 'emailError');
+                isValid = false;
+            }
+
+            // 3. Validate Password
+            const password = document.getElementById('password');
+            if (password.value.length < 6) {
+                showError(password, 'passwordError');
+                isValid = false;
+            }
+
+            // 4. Validate Re-enter Password
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (confirmPassword.value !== password.value || confirmPassword.value === "") {
+                showError(confirmPassword, 'confirmPasswordError');
+                isValid = false;
+            }
+
+            // Success Logic
+            if (isValid) {
+                const payload = {
+                    fullName: fullName.value,
+                    email: email.value,
+                    password: password.value
+                };
+
+                fetch('http://localhost:3000/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("success: " + data.message);
+                        // Optional: Redirect to login page
+                        // window.location.href = 'login.html';
+                    } else {
+                        alert("error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Could not connect to the backend.");
+                });
+            }
+        });
+
+        function showError(inputElement, errorId) {
+            inputElement.classList.add('invalid');
+            document.getElementById(errorId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
