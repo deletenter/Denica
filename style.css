@@ -1,15 +1,17 @@
+/* --- Global Reset & Typography --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Calibri', 'Segoe UI', sans-serif; 
+    font-family: 'Calibri', 'Segoe UI', sans-serif; /* Per assignment style [cite: 497] */
 }
 
 body {
-    background-color: #f4f7f9;
+    background-color: #f4f7f9; /* Light background from SRS Fig 6 & 7 [cite: 300, 302] */
     color: #333;
 }
 
+/* --- Navigation & Header --- */
 .promo-banner {
     background-color: #333;
     color: white;
@@ -53,48 +55,116 @@ body {
     font-weight: 500;
 }
 
-.search-bar form {
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
+/* --- Auth Pages (Login & Registration) --- */
+/* This section ensures the UI matches Figure 6 & 7 [cite: 300, 302] */
+
+.login-container, .register-container {
+    max-width: 400px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 50px 40px;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Minimalist shadow [cite: 122] */
 }
 
-.search-bar input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    padding: 5px;
-    font-size: 0.85rem;
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 35px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color: #fcfcfc;
+    font-size: 0.9rem;
     outline: none;
+    transition: border-color 0.3s;
 }
 
-.search-bar button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #555;
-    margin-left: -20px;
+.form-group input:focus {
+    border-color: #000;
 }
 
-.header-utilities {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.header-utilities a {
-    color: #333;
-    text-decoration: none;
-    font-size: 1.1rem;
-    position: relative;
-}
-
-.cart-count {
+/* Error Messages for Validation */
+.error-message {
+    color: #ff4d4d;
     font-size: 0.75rem;
-    margin-left: 5px;
-    font-weight: bold;
+    margin-top: 5px;
+    display: none; /* Hidden by default */
 }
 
+input.invalid {
+    border-color: #ff4d4d;
+}
+
+/* Options Row: Remember Me & Forgot Password [cite: 311] */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.forgot-link {
+    color: #888;
+    text-decoration: none;
+}
+
+/* Primary Action Button */
+.btn-continue {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 25px;
+    transition: background 0.3s;
+}
+
+.btn-continue:hover {
+    background-color: #333;
+}
+
+/* Footer Links for Auth Pages */
+.footer-link, .admin-link {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+.footer-link a, .admin-link a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* --- Hero & Landing Content --- */
 .hero-section {
     text-align: center;
     padding: 60px 5% 40px 5%;
@@ -102,15 +172,7 @@ body {
 
 .hero-section h1 {
     font-size: 3rem;
-    font-weight: 700;
     margin-bottom: 15px;
-    color: #000;
-}
-
-.subtitle {
-    color: #666;
-    font-size: 1rem;
-    margin-bottom: 30px;
 }
 
 .btn-outline {
@@ -128,92 +190,7 @@ body {
     color: #fff;
 }
 
-.hero-image-placeholder {
-    background-color: #c4c4c4;
-    width: 100%;
-    max-width: 950px;
-    height: 480px;
-    margin: 40px auto;
-}
-
-.brand-logo-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: 20px 0 60px 0;
-}
-
-.logo-item img {
-    height: 70px;
-    width: auto;
-    background: white;
-    padding: 10px;
-    display: block;
-}
-
-/* About Us Styling */
-.about-us {
-    width: 100%;
-    background-color: #f4f7f9;
-}
-
-.about-header-bar {
-    background-color: #c4c4c4;
-    padding: 90px 0;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.about-header-bar h2 {
-    font-size: 3rem;
-    font-weight: 600;
-    color: #000;
-}
-
-.about-content {
-    max-width: 850px;
-    margin: 0 auto;
-    padding: 0 40px 100px 40px;
-    text-align: center;
-}
-
-.about-content p {
-    color: #888; 
-    margin-bottom: 25px;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.btn-journey {
-    background: #f4f7f9;
-    border: 1px solid #333;
-    padding: 12px 35px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .hero-section h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-image-placeholder {
-        height: 250px;
-    }
-    
-    .brand-logo-grid {
-        flex-direction: column;
-    }
-}
-
-/* Footer Styling */
+/* --- Footer --- */
 .main-footer {
     background-color: #f4f7f9; 
     padding: 80px 5%;
@@ -229,84 +206,14 @@ body {
     gap: 40px;
 }
 
-.footer-subscribe {
-    flex: 1;
-    min-width: 300px;
-}
-
-.footer-subscribe h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.footer-subscribe p {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-    max-width: 350px;
-}
-
-.subscribe-form {
-    display: flex;
-    border-bottom: 1px solid #333;
-    max-width: 400px;
-}
-
-.subscribe-form input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    padding: 10px 0;
-    outline: none;
-}
-
-.subscribe-form button {
-    background: transparent;
-    border: none;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 80px;
-    flex: 1;
-    justify-content: flex-end;
-}
-
-.link-group h4 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.link-group ul {
-    list-style: none;
-}
-
-.link-group ul li {
-    margin-bottom: 12px;
-}
-
-.link-group ul li a {
-    text-decoration: none;
-    color: #888;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.link-group ul li a:hover {
-    color: #000;
-}
-
-@media (max-width: 900px) {
-    .footer-container {
-        flex-direction: column;
+/* --- Responsive Adjustments [cite: 468] --- */
+@media (max-width: 768px) {
+    .login-container, .register-container {
+        margin: 40px 20px;
+        padding: 30px 20px;
     }
-    .footer-links {
-        justify-content: flex-start;
-        gap: 40px;
+    
+    .hero-section h1 {
+        font-size: 2rem;
     }
 }

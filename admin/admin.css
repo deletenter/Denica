@@ -295,3 +295,104 @@ body {
     font-size: 18px;
     margin-bottom: 15px;
 }
+
+/* --- Global Admin Styles --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+}
+
+/* --- Admin Login Page (New) --- */
+.admin-login-body {
+    background-color: #1a1a1a; /* Dark background per SRS */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.admin-login-card {
+    background: #fff;
+    width: 380px;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.admin-login-header h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+}
+
+.admin-login-header p {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.admin-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.admin-form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    outline: none;
+}
+
+.admin-login-btn {
+    width: 100%;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-login-btn:hover {
+    background: #000;
+}
+
+.admin-login-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.admin-login-footer a {
+    font-size: 0.8rem;
+    color: #888;
+    text-decoration: none;
+}
+
+/* --- Navigation & Tables (Existing) --- */
+.main-header { 
+    background: #000; color: #fff; padding: 12px 50px; 
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.management-bar { 
+    background: #1a1a1a; color: white; padding: 35px 50px; 
+}
+
+.srs-table { 
+    width: 100%; border-collapse: collapse; background: white; 
+}
+
+.srs-table th { background: #f8f9fa; padding: 12px; text-align: left; border-bottom: 2px solid #eee; }
+.srs-table td { padding: 15px; border-bottom: 1px solid #eee; }
