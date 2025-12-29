@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denica Admin - Login</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-login-body">
+
+    <div class="admin-login-card">
+        <div class="admin-login-header">
+            <h2>Denica Admin</h2>
+            <p>Enter credentials to access management tools.</p>
+        </div>
+
+        <form id="adminLoginForm">
+            <div class="admin-form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="admin@denica.com" required>
+            </div>
+
+            <div class="admin-form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="admin-login-btn">Login to Dashboard</button>
+        </form>
+        
+        <div class="admin-login-footer">
+            <a href="../login.html">← Back to Public Site</a>
+        </div>
+    </div>
+
+    <script>
+        // Directly links to the HTML dashboard after "Login"
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            window.location.href = 'admin_dashboard.html'; 
+        });
+    </script>
+</body>
+</html>
