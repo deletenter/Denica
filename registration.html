@@ -4,135 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Denica - Register</title>
-    <style>
-        /* General Reset and Font */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f9f9f9;
-        }
-
-        /* Card Container */
-        .register-container {
-            background-color: #ffffff;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        /* Typography */
-        h1 {
-            font-size: 28px;
-            color: #000;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            font-size: 16px;
-            color: #888;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            border-color: #333;
-        }
-
-        /* Validation Error Styling */
-        .error-message {
-            color: #d93025;
-            font-size: 12px;
-            margin-top: 5px;
-            display: none; /* Hidden by default */
-        }
-
-        input.invalid {
-            border-color: #d93025;
-        }
-
-        /* Remember Me Checkbox */
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .checkbox-group input {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        /* Button Styling */
-        .btn-continue {
-            width: 150px;
-            padding: 12px;
-            background-color: #f0f0f5; /* Light grey per wireframe */
-            color: #333;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .btn-continue:hover {
-            background-color: #e0e0e0;
-        }
-
-        /* Footer Link */
-        .login-link {
-            font-size: 14px;
-            color: #888;
-            text-decoration: none;
-        }
-
-        .login-link strong {
-            color: #555;
-            font-weight: 600;
-        }
-
-        .login-link:hover strong {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -168,7 +40,7 @@
             <button type="submit" class="btn-continue">Continue</button>
         </form>
 
-        <a href="#" class="login-link">Have an account? <strong>Login now!</strong></a>
+        <a href="login.html" class="login-link">Have an account? <strong>Login now!</strong></a>
     </div>
 
     <script>
@@ -212,8 +84,31 @@
 
             // Success Logic
             if (isValid) {
-                alert('Registration Successful! (Demo)');
-                // Here you would typically send data to the backend
+                const payload = {
+                    fullName: fullName.value,
+                    email: email.value,
+                    password: password.value
+                };
+
+                fetch('http://localhost:3000/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("success: " + data.message);
+                        // Optional: Redirect to login page
+                        // window.location.href = 'login.html';
+                    } else {
+                        alert("error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Could not connect to the backend.");
+                });
             }
         });
 
