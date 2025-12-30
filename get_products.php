@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 $databaseHost = 'localhost'; 
 $databaseUsername = 'root';
 $databasePassword = '';
-$databaseName = 'denica';
+$databaseName = 'denicaData';
 
 $conn = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
@@ -13,14 +13,29 @@ if (!$conn) {
     exit;
 }
 
-// Fixed Query: Using ItemID as 'id' and ScentProfile as 'size' to match your JS
-$sql = "SELECT ItemID as id, ProductName as name, Brand as brand, Price as price, ScentProfile as size, Description as description FROM item";
+$sql = "SELECT 
+            ItemID as id, 
+            ProductName as name, 
+            Brand as brand, 
+            Price as price, 
+            ScentProfile as scent_profile, 
+            Description as description,
+            CONCAT('Assets/', ProductName, '.png') as image 
+        FROM item";
+
 $result = $conn->query($sql);
 
 $products = [];
 if ($result && $result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        $row['price'] = (float)$row['price']; 
+        $row['price'] = (float)$row['price'];
+        
+        // OPTIONAL: Fallback if the specific image doesn't exist
+        // This ensures the site doesn't look broken if you haven't uploaded 'Mahsuri.png' yet.
+        if (!file_exists($row['image'])) {
+            $row['image'] = 'Assets/perfumery.jpg'; // Use a default image you know works
+        }
+        
         $products[] = $row;
     }
 }
