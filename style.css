@@ -180,41 +180,6 @@ h1 {
     color: #fff;
 }
 
-/* --- Cart Page Layout --- */
-.cart-page-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 50px auto;
-    gap: 50px;
-}
-
-.cart-main-content {
-    flex: 2; 
-}
-
-.cart-items-section {
-    flex: 2;
-}
-
-.cart-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.continue-shopping {
-    font-size: 0.9rem;
-    color: #333;
-    margin-bottom: 40px;
-}
-
-.continue-shopping a {
-    color: #333;
-    text-decoration: underline;
-}
-
 /* Item Styling */
 .cart-item {
     display: flex;
