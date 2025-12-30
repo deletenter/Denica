@@ -183,10 +183,15 @@ h1 {
 /* --- Cart Page Layout --- */
 .cart-page-container {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     max-width: 1200px;
-    margin: 40px auto;
-    gap: 60px;
-    padding: 0 5%;
+    margin: 50px auto;
+    gap: 50px;
+}
+
+.cart-main-content {
+    flex: 2; /* Takes up 2/3 of the space */
 }
 
 .cart-items-section {
@@ -262,7 +267,11 @@ h1 {
 
 /* Order Summary Sidebar */
 .order-summary-sidebar {
-    flex: 1;
+    flex: 1; 
+    background-color: #f9f9f9; 
+    padding: 30px;
+    position: sticky;
+    top: 120px;
 }
 
 .order-summary-sidebar h2 {
