@@ -17,7 +17,6 @@ async function fetchProducts() {
     }
 }
 
-// Render the product cards into the grid
 function renderProducts(list) {
     const grid = document.getElementById('productGrid');
     grid.innerHTML = ""; 
@@ -26,15 +25,21 @@ function renderProducts(list) {
     list.slice(0, visibleCount).forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
+        
+        // Wrapping the card content in a link that passes the ID
         card.innerHTML = `
-            <div class="card-image"><span class="brand-tag">${product.brand}</span></div>
-            <div class="card-info">
-                <div class="info-row">
-                    <span class="p-name">${product.name}</span>
-                    <span class="p-size">${product.size || ''}</span>
+            <a href="product_detail.php?id=${product.id}" style="text-decoration: none; color: inherit;">
+                <div class="card-image">
+                    <span class="brand-tag">${product.brand}</span>
+                    </div>
+                <div class="card-info">
+                    <div class="info-row">
+                        <span class="p-name">${product.name}</span>
+                        <span class="p-size">${product.size || ''}</span>
+                    </div>
+                    <div class="p-price">RM ${product.price}</div>
                 </div>
-                <div class="p-price">RM ${product.price}</div>
-            </div>
+            </a>
         `;
         grid.appendChild(card);
     });
