@@ -27,7 +27,7 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
             <a href="index.php" class="brand-identity">Denica</a> 
             
             <nav class="main-nav">
-                <a href="products.html">Perfumes</a>
+                <a href="products.php">Perfumes</a>
                 <a href="quiz/discovery.html">Discovery</a>
             </nav>
 
@@ -120,3 +120,4 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
 </body>
 
 </html>
+
