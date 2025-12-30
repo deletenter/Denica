@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order History | Denica</title>
+  <link rel="stylesheet" href="userprofile.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+<body>
+
+  <header class="global-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-identity">Denica</a>
+      <nav class="main-nav">
+        <a href="products.html">Perfumes</a>
+        <a href="discovery.html">Discovery</a>
+      </nav>
+      <div class="search-bar">
+        <form action="search_results.html" method="GET">
+          <input type="text" placeholder="Search" name="query" />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="header-utilities">
+        <a href="cart.html" class="cart-link">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count">2</span>
+        </a>
+        <a href="login.html" class="profile-link">
+          <i class="fas fa-user-circle"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="profile-container">
+      <div class="tabs">
+        <a href="userprofile.html" class="tab">Profile</a>
+        <a href="orderhistory.html" class="tab active">Orders</a>
+        <a href="quizresults.html" class="tab">My Scent</a>
+      </div>
+
+      <div class="profile-box2">
+        <h2>Orders</h2>
+
+        <div class="order-item">
+          <img src="order1.jpg" alt="Order">
+          <div class="order-entry">
+            <p><strong>Order ID:</strong> LX-XXXX</p>
+            <p><strong>Date:</strong> 31 Aug 2025</p>
+            <p><strong>Total:</strong> RM 89</p>
+            <p><strong>Status:</strong> Completed</p>
+          </div>
+          <div style="margin-left:auto;">
+            <a href="orderdetails.html" class="edit-link">Details</a>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="order-item">
+          <img src="order2.jpg" alt="Order">
+          <div class="order-entry">
+            <p><strong>Order ID:</strong> LX-XXXX</p>
+            <p><strong>Date:</strong> 29 Aug 2025</p>
+            <p><strong>Total:</strong> RM 89</p>
+            <p><strong>Status:</strong> Completed</p>
+          </div>
+          <div style="margin-left:auto;">
+            <a href="orderdetails.html" class="edit-link">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
