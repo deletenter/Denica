@@ -11,7 +11,6 @@ if (!$conn) {
 
 /**
  * 1. STATS QUERIES
- * Counts only active items (IsDeleted = 0)
  */
 $totalProducts = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM item WHERE IsDeleted = 0"))['total'] ?? 0;
 $totalCustomers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM customer"))['total'] ?? 0;
@@ -109,7 +108,7 @@ while($row = mysqli_fetch_assoc($chartResult)) {
 
     <div class="chart-card">
         <h2>Revenue Trends (Last 7 Days)</h2>
-        <div style="height: 300px;">
+        <div style="height: 350px;">
             <canvas id="salesChart"></canvas>
         </div>
     </div>
@@ -158,23 +157,24 @@ new Chart(ctx, {
         datasets: [{
             label: 'Daily Revenue (RM)',
             data: <?= json_encode($data); ?>,
-            borderColor: '#1a1a1a',
-            backgroundColor: 'rgba(26, 26, 26, 0.05)',
-            borderWidth: 3,
-            tension: 0.4,
-            fill: true,
-            pointBackgroundColor: '#1a1a1a',
-            pointRadius: 4
+            // Each slice needs a color
+            backgroundColor: [
+                '#2c3e50', '#3498db', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#9b59b6'
+            ],
+            borderColor: '#ffffff',
+            borderWidth: 2
         }]
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-            y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
-            x: { grid: { display: false } }
+        plugins: { 
+            legend: { 
+                display: true, 
+                position: 'bottom' 
+            } 
         }
+        // IMPORTANT: The "scales" block was removed. Pie charts do not have X or Y axes.
     }
 });
 </script>
