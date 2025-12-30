@@ -23,7 +23,7 @@
         </div>
 
         <div class="nav-icons">
-        <a href="<?php echo $cartLink; ?>" aria-label="Open cart" style="text-decoration:none;">
+        <a href="cart.html" aria-label="Open cart" style="text-decoration:none;">
             <span>👜</span>
         </a>
 
