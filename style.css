@@ -191,7 +191,7 @@ h1 {
 }
 
 .cart-main-content {
-    flex: 2; /* Takes up 2/3 of the space */
+    flex: 2; 
 }
 
 .cart-items-section {
