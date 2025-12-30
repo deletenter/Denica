@@ -337,6 +337,23 @@ body {
     border-radius: 4px;
 }
 
+.landing-card .img-placeholder {
+    width: 100%;
+    height: 200px; 
+    background-color: var(--placeholder-gray);
+    margin-bottom: 15px;
+    overflow: hidden; /
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-card .img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
 /* ANIMATIONS */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
