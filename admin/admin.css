@@ -177,7 +177,7 @@ body {
     background: #eee;
 }
 
-/* --- Add Product Modal (Figure 22) --- */
+/* --- Add Product Modal  --- */
 .modal { 
     display: none; 
     position: fixed; 
@@ -396,3 +396,87 @@ body {
 
 .srs-table th { background: #f8f9fa; padding: 12px; text-align: left; border-bottom: 2px solid #eee; }
 .srs-table td { padding: 15px; border-bottom: 1px solid #eee; }
+
+/* --- Edit/Delete Buttons --- */
+.edit-btn, .delete-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: 0.2s;
+}
+
+.edit-btn {
+    background-color: #1565c0; /* Blue for edit */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #0d3c7b;
+}
+
+.delete-btn {
+    background-color: #e53935; /* Red for delete */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #ab000d;
+}
+
+/* Optional: Make the action column text-align center */
+.srs-table td:last-child {
+    text-align: center;
+    white-space: nowrap; /* Prevent buttons from wrapping */
+}
+
+/* --- Filter buttons (for transaction/report tabs) --- */
+.filter-buttons a {
+    display: inline-block;
+    padding: 8px 20px;
+    margin-right: 8px;
+    border-radius: 3px;
+    background: #ddd;
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.filter-buttons a.active, .filter-buttons a:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* --- Optional: Responsive table --- */
+@media screen and (max-width: 768px) {
+    .srs-table, .srs-table thead, .srs-table tbody, .srs-table th, .srs-table td, .srs-table tr { 
+        display: block; 
+    }
+
+    .srs-table th {
+        display: none;
+    }
+
+    .srs-table td {
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .srs-table td::before {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        white-space: nowrap;
+        font-weight: bold;
+        content: attr(data-label);
+    }
+}
