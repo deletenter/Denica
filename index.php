@@ -103,9 +103,9 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
                 <div class="link-group">
                     <h4>Shop</h4>
                     <ul>
-                        <li><a href="products.php?brand=medin">Medin Fragrance</a></li>
-                        <li><a href="products.php?brand=szindore">Szindore</a></li>
-                        <li><a href="products.php?brand=toxiclab">The Toxic Lab</a></li>
+                        <li><a href="products.php?brand=Medin">Medin Fragrance</a></li>
+                        <li><a href="products.php?brand=Szindore">Szindore</a></li>
+                        <li><a href="products.php?brand=The Toxic Lab">The Toxic Lab</a></li>
                     </ul>
                 </div>
                 <div class="link-group">
@@ -118,4 +118,5 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
         </div>
     </footer>
 </body>
+
 </html>
