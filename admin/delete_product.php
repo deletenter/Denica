@@ -7,12 +7,17 @@ if (!$conn) {
 $id = $_GET['id'] ?? null;
 
 if ($id) {
-    $stmt = $conn->prepare("DELETE FROM item WHERE ItemID=?");
+    // Instead of DELETE, we UPDATE the status to 1 (Hidden/Deleted)
+    $stmt = $conn->prepare("UPDATE item SET IsDeleted = 1 WHERE ItemID = ?");
     $stmt->bind_param("i", $id);
-    $stmt->execute();
+    
+    if ($stmt->execute()) {
+        header("Location: products.php?status=deleted");
+    } else {
+        echo "Error: " . $stmt->error;
+    }
     $stmt->close();
 }
 
 mysqli_close($conn);
-header("Location: products.php");
 exit;

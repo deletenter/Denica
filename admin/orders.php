@@ -5,20 +5,17 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Filter type: all, daily, weekly, monthly
 $filter = $_GET['filter'] ?? 'all';
-
-// Search keyword
 $search = trim($_GET['search'] ?? '');
-
-// Sort
 $sort = $_GET['sort'] ?? 'date_desc';
-$orderSQL = "ORDER BY o.OrderDate DESC"; // default
-if ($sort == 'date_asc') $orderSQL = "ORDER BY o.OrderDate ASC";
-if ($sort == 'grandtotal_desc') $orderSQL = "ORDER BY o.GrandTotal DESC";
-if ($sort == 'grandtotal_asc') $orderSQL = "ORDER BY o.GrandTotal ASC";
 
-// Build SQL WHERE conditions
+// Sort Logic
+$orderSQL = "ORDER BY o.OrderDate DESC";
+if ($sort == 'date_asc') $orderSQL = "ORDER BY o.OrderDate ASC";
+if ($sort == 'total_desc') $orderSQL = "ORDER BY GrandTotal DESC";
+if ($sort == 'total_asc') $orderSQL = "ORDER BY GrandTotal ASC";
+
+// Build WHERE conditions
 $where = [];
 if ($filter == 'daily') {
     $where[] = "DATE(o.OrderDate) = CURDATE()";
@@ -28,43 +25,71 @@ if ($filter == 'daily') {
     $where[] = "MONTH(o.OrderDate) = MONTH(CURDATE()) AND YEAR(o.OrderDate) = YEAR(CURDATE())";
 }
 
-// Add search condition
 if ($search !== '') {
-    $where[] = "o.OrderID LIKE '%$search%' OR c.FullName LIKE '%$search%'";
+    $where[] = "(o.OrderID LIKE ? OR c.Name LIKE ?)";
 }
 
 $whereSQL = $where ? "WHERE " . implode(" AND ", $where) : "";
 
-// Query orders with customer names
-$sql = "SELECT o.*, c.FullName AS CustomerName 
+$sql = "SELECT o.OrderID, o.OrderDate, o.OrderStatus, c.Name AS CustomerName, 
+               SUM(oi.Quantity) AS ItemsSold, 
+               SUM(oi.Quantity * oi.UnitPrice) AS GrandTotal
         FROM orders o
-        JOIN customers c ON o.CustomerID = c.CustomerID
+        JOIN customer c ON o.CustomerID = c.CustomerID
+        JOIN orderitem oi ON o.OrderID = oi.OrderID
         $whereSQL
+        GROUP BY o.OrderID
         $orderSQL";
-$result = mysqli_query($conn, $sql);
 
-// Calculate totals
+$stmt = $conn->prepare($sql);
+if ($search !== '') {
+    $searchTerm = "%$search%";
+    $stmt->bind_param("ss", $searchTerm, $searchTerm);
+}
+$stmt->execute();
+$result = $stmt->get_result();
+
 $totalItems = 0;
 $totalRevenue = 0;
-if ($result && mysqli_num_rows($result) > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
-        $totalItems += $row['ItemsSold'];
-        $totalRevenue += $row['GrandTotal'];
-    }
+$orderCount = 0;
+$rows = [];
+while($row = $result->fetch_assoc()) {
+    $totalItems += $row['ItemsSold'];
+    $totalRevenue += $row['GrandTotal'];
+    $orderCount++;
+    $rows[] = $row;
 }
-
-// Re-run query to fetch rows for display
-$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Denica Admin - Order Management</title>
+    <title>Denica Report - <?= ucfirst($filter) ?> Orders</title>
     <link rel="stylesheet" href="admin.css">
+    <style>
+        /* PDF/Print Specific Styles */
+        @media print {
+            .main-header, .management-bar, .filter-tabs, .action-row, .delete-btn, .edit-btn {
+                display: none !important;
+            }
+            body { background: white; }
+            .admin-content { padding: 0; }
+            .print-header { display: block !important; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+            .srs-table { box-shadow: none; border: 1px solid #000; }
+            .srs-table th { background: #eee !important; color: #000 !important; }
+        }
+        .print-header { display: none; }
+    </style>
 </head>
 <body>
+
+<div class="print-header">
+    <h1>DENICA TRANSACTION REPORT</h1>
+    <p><strong>Report Type:</strong> <?= strtoupper($filter) ?> ORDERS</p>
+    <p><strong>Generated On:</strong> <?= date("d-m-Y H:i:s") ?></p>
+    <p><strong>Summary:</strong> <?= $orderCount ?> Orders | <?= $totalItems ?> Items Sold | Total RM <?= number_format($totalRevenue, 2) ?></p>
+</div>
 
 <header class="main-header">
     <div class="logo">Denica</div>
@@ -74,87 +99,68 @@ $result = mysqli_query($conn, $sql);
         <a href="customers.php">Customers</a>
         <a href="orders.php" class="active">Orders</a>
     </nav>
-    <div class="admin-profile">👤</div>
+    <div class="admin-profile">👤 Admin</div>
 </header>
 
 <section class="management-bar">
     <h1>Order Management</h1>
     <form method="get" class="search-box">
         <span>🔍</span>
-        <input type="text" name="search" placeholder="Find Order..." value="<?= htmlspecialchars($search) ?>">
-        <input type="hidden" name="filter" value="<?= htmlspecialchars($filter) ?>">
-        <input type="hidden" name="sort" value="<?= htmlspecialchars($sort) ?>">
+        <input type="text" name="search" placeholder="Search Order ID or Customer..." value="<?= htmlspecialchars($search) ?>">
     </form>
 </section>
 
 <main class="admin-content">
-    <!-- Filter Tabs -->
     <div class="filter-tabs">
-        <a href="orders.php?filter=all&sort=<?= $sort ?>&search=<?= urlencode($search) ?>" class="tab <?= $filter=='all'?'active':'' ?>">All</a>
-        <a href="orders.php?filter=daily&sort=<?= $sort ?>&search=<?= urlencode($search) ?>" class="tab <?= $filter=='daily'?'active':'' ?>">Daily</a>
-        <a href="orders.php?filter=weekly&sort=<?= $sort ?>&search=<?= urlencode($search) ?>" class="tab <?= $filter=='weekly'?'active':'' ?>">Weekly</a>
-        <a href="orders.php?filter=monthly&sort=<?= $sort ?>&search=<?= urlencode($search) ?>" class="tab <?= $filter=='monthly'?'active':'' ?>">Monthly</a>
+        <a href="orders.php?filter=all" class="tab <?= $filter=='all'?'active':'' ?>">All</a>
+        <a href="orders.php?filter=daily" class="tab <?= $filter=='daily'?'active':'' ?>">Daily</a>
+        <a href="orders.php?filter=weekly" class="tab <?= $filter=='weekly'?'active':'' ?>">Weekly</a>
+        <a href="orders.php?filter=monthly" class="tab <?= $filter=='monthly'?'active':'' ?>">Monthly</a>
     </div>
 
     <div class="action-row">
-        <!-- Sort Dropdown -->
         <div class="sort-dropdown">
             Sort by: 
             <select id="sortSelect" onchange="sortOrders()">
-                <option value="date_desc" <?= $sort=='date_desc'?'selected':'' ?>>Date & Time ▼</option>
-                <option value="date_asc" <?= $sort=='date_asc'?'selected':'' ?>>Date & Time ▲</option>
-                <option value="grandtotal_desc" <?= $sort=='grandtotal_desc'?'selected':'' ?>>Grand Total ▼</option>
-                <option value="grandtotal_asc" <?= $sort=='grandtotal_asc'?'selected':'' ?>>Grand Total ▲</option>
+                <option value="date_desc" <?= $sort=='date_desc'?'selected':'' ?>>Newest First</option>
+                <option value="total_desc" <?= $sort=='total_desc'?'selected':'' ?>>Highest Amount</option>
             </select>
         </div>
-
         <div class="table-utilities">
-            <button onclick="window.print()">🖨️</button>
+            <button onclick="window.print()" class="add-btn" style="background: #1a1a1a; color: white;">
+                📄 Generate PDF Report
+            </button>
         </div>
     </div>
 
-    <!-- Display total items and revenue -->
-    <div style="margin-bottom: 15px;">
-        <strong>Total Items:</strong> <?= $totalItems ?> |
-        <strong>Total Revenue:</strong> RM <?= number_format($totalRevenue, 2) ?>
+    <div style="margin-bottom: 15px; padding: 15px; background: #fff; border-radius: 4px; display: flex; justify-content: space-between;">
+        <span>Orders: <strong><?= $orderCount ?></strong></span>
+        <span>Items Sold: <strong><?= $totalItems ?></strong></span>
+        <span>Total Revenue: <strong style="color: #2e7d32;">RM <?= number_format($totalRevenue, 2) ?></strong></span>
     </div>
 
     <table class="srs-table">
         <thead>
             <tr>
                 <th>Order ID</th>
-                <th>Date & Time</th>
+                <th>Date</th>
                 <th>Customer</th>
-                <th>Items Sold</th>
-                <th>Grand Total</th>
+                <th>Items</th>
+                <th>Total</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <?php if ($result && mysqli_num_rows($result) > 0): ?>
-                <?php while($row = mysqli_fetch_assoc($result)): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['OrderID']) ?></td>
-                        <td><?= date("d-m-Y H:i", strtotime($row['OrderDate'])) ?></td>
-                        <td><?= htmlspecialchars($row['CustomerName']) ?></td>
-                        <td><?= $row['ItemsSold'] ?></td>
-                        <td>RM <?= number_format($row['GrandTotal'], 2) ?></td>
-                        <td>
-                            <?php if($row['Status'] == 'Completed'): ?>
-                                <span class="status-completed">Completed</span>
-                            <?php elseif($row['Status'] == 'Pending'): ?>
-                                <span class="status-active">Pending</span>
-                            <?php else: ?>
-                                <span><?= htmlspecialchars($row['Status']) ?></span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
+            <?php foreach($rows as $row): ?>
                 <tr>
-                    <td colspan="6" style="text-align:center;">No orders found</td>
+                    <td>#<?= $row['OrderID'] ?></td>
+                    <td><?= date("d/m/Y", strtotime($row['OrderDate'])) ?></td>
+                    <td><?= htmlspecialchars($row['CustomerName']) ?></td>
+                    <td><?= $row['ItemsSold'] ?></td>
+                    <td>RM <?= number_format($row['GrandTotal'], 2) ?></td>
+                    <td><?= $row['OrderStatus'] ?></td>
                 </tr>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </main>
@@ -167,8 +173,5 @@ function sortOrders() {
     window.location.search = urlParams.toString();
 }
 </script>
-
 </body>
 </html>
-
-<?php mysqli_close($conn); ?>

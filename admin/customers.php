@@ -8,19 +8,28 @@ if (!$conn) {
 // Search keyword
 $search = trim($_GET['search'] ?? '');
 
-// Sort
-$sort = $_GET['sort'] ?? 'name_asc';
-$orderSQL = "ORDER BY FullName ASC"; // default
-if ($sort == 'name_desc') $orderSQL = "ORDER BY FullName DESC";
-if ($sort == 'email_asc') $orderSQL = "ORDER BY Email ASC";
-if ($sort == 'email_desc') $orderSQL = "ORDER BY Email DESC";
+// Sort Logic - Using 'Name' and 'CustomerID' from your SQL dump
+$sort = $_GET['sort'] ?? 'id_desc';
 
-// Build SQL WHERE for search
-$whereSQL = $search ? "WHERE FullName LIKE '%$search%' OR Email LIKE '%$search%' OR Phone LIKE '%$search%'" : "";
+$orderSQL = "CustomerID DESC"; // Default
+switch ($sort) {
+    case 'name_asc':  $orderSQL = "Name ASC"; break;
+    case 'name_desc': $orderSQL = "Name DESC"; break;
+    case 'email_asc': $orderSQL = "Email ASC"; break;
+    case 'email_desc':$orderSQL = "Email DESC"; break;
+    case 'id_desc':   $orderSQL = "CustomerID DESC"; break;
+}
 
-// Query customers
-$sql = "SELECT * FROM customers $whereSQL $orderSQL";
-$result = mysqli_query($conn, $sql);
+// Build Query targeting the 'customer' table
+if ($search !== '') {
+    $stmt = $conn->prepare("SELECT * FROM customer WHERE Name LIKE ? OR Email LIKE ? ORDER BY $orderSQL");
+    $keyword = "%$search%";
+    $stmt->bind_param("ss", $keyword, $keyword);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $result = mysqli_query($conn, "SELECT * FROM customer ORDER BY $orderSQL");
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,56 +49,57 @@ $result = mysqli_query($conn, $sql);
         <a href="customers.php" class="active">Customers</a>
         <a href="orders.php">Orders</a>
     </nav>
-    <div class="admin-profile">👤</div>
+    <div class="admin-profile">👤 Admin</div>
 </header>
 
 <section class="management-bar">
     <h1>Customer Management</h1>
     <form method="get" class="search-box">
         <span>🔍</span>
-        <input type="text" name="search" placeholder="Search Customers..." value="<?= htmlspecialchars($search) ?>">
+        <input type="text" name="search" placeholder="Search by Name or Email..." value="<?= htmlspecialchars($search) ?>">
         <input type="hidden" name="sort" value="<?= htmlspecialchars($sort) ?>">
     </form>
 </section>
 
 <main class="admin-content">
-
     <div class="action-row">
-        <!-- Sort Dropdown -->
         <div class="sort-dropdown">
             Sort by: 
             <select id="sortSelect" onchange="sortCustomers()">
+                <option value="id_desc" <?= $sort=='id_desc'?'selected':'' ?>>Newest First</option>
                 <option value="name_asc" <?= $sort=='name_asc'?'selected':'' ?>>Name A-Z</option>
                 <option value="name_desc" <?= $sort=='name_desc'?'selected':'' ?>>Name Z-A</option>
                 <option value="email_asc" <?= $sort=='email_asc'?'selected':'' ?>>Email A-Z</option>
-                <option value="email_desc" <?= $sort=='email_desc'?'selected':'' ?>>Email Z-A</option>
             </select>
+        </div>
+        <div class="sort-dropdown">
+            Total Customers: <strong><?= mysqli_num_rows($result) ?></strong>
         </div>
     </div>
 
     <table class="srs-table">
         <thead>
             <tr>
-                <th>Customer ID</th>
+                <th>ID</th>
                 <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
+                <th>Email Address</th>
+                <th style="text-align: center;">Status</th>
             </tr>
         </thead>
         <tbody>
             <?php if ($result && mysqli_num_rows($result) > 0): ?>
                 <?php while($row = mysqli_fetch_assoc($result)): ?>
                     <tr>
-                        <td><?= $row['CustomerID'] ?></td>
-                        <td><?= htmlspecialchars($row['FullName']) ?></td>
+                        <td>#<?= $row['CustomerID'] ?></td>
+                        <td style="font-weight: 600;"><?= htmlspecialchars($row['Name']) ?></td>
                         <td><?= htmlspecialchars($row['Email']) ?></td>
-                        <td><?= htmlspecialchars($row['Phone']) ?></td>
+                        <td style="text-align: center;">
+                            <span class="status-active">● Active</span>
+                        </td>
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
-                <tr>
-                    <td colspan="4" style="text-align:center;">No customers found</td>
-                </tr>
+                <tr><td colspan="4" style="text-align:center; padding: 40px;">No customers found.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
@@ -106,5 +116,4 @@ function sortCustomers() {
 
 </body>
 </html>
-
 <?php mysqli_close($conn); ?>
