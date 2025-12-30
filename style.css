@@ -32,6 +32,46 @@ body {
     z-index: 1000;
 }
 
+/* Container for the search bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+/* The actual form using Flexbox */
+.search-form {
+    display: flex; 
+    align-items: center;
+    border: 1px solid #ccc; 
+    background-color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.search-form input {
+    border: none; 
+    padding: 8px;
+    outline: none; 
+    font-size: 0.9rem;
+    width: 150px; 
+}
+
+.search-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-size: 1rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form button:hover {
+    color: #000;
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
