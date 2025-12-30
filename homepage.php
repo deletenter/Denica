@@ -18,13 +18,16 @@
             <a href="#">Perfumes</a>
             <a href="#">Discovery</a>
             <a href="#">About</a>
+
             <span class="search-icon">🔍 Search</span>
         </div>
 
         <div class="nav-icons">
-            <span>👜 2</span>
+        <a href="<?php echo $cartLink; ?>" aria-label="Open cart" style="text-decoration:none;">
+            <span>👜</span>
+        </a>
 
-            <a href="<?php echo $profileLink; ?>" aria-label="Open profile" style="text-decoration:none;">
+            <a href="cart.php" aria-label="Open profile" style="text-decoration:none;">
                 <span style="cursor:pointer;">👤</span>
             </a>
         </div>
