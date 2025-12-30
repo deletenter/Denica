@@ -1,9 +1,11 @@
 <?php
 session_start();
 
+// Check cart count
 $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
-$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
+// Dynamic profile link logic
+$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +27,8 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
             <a href="index.php" class="brand-identity">Denica</a> 
             
             <nav class="main-nav">
-                <a href="products.php">Perfumes</a>
-                <a href="quiz/discovery.php">Discovery</a>
+                <a href="products.html">Perfumes</a>
+                <a href="quiz/discovery.html">Discovery</a>
             </nav>
 
             <div class="search-bar">
@@ -37,7 +39,7 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
             </div>
 
             <div class="header-utilities">
-                <a href="cart.php" class="cart-link">
+                <a href="cart.html" class="cart-link">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count"><?php echo $cart_count; ?></span> 
                 </a>
@@ -54,9 +56,9 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
             <p class="subtitle">Discover and shop curated local fragrances — all in one place.</p>
             
             <div class="hero-action">
-               <button class="btn-outline" onclick="window.location.href='products.php';">
-                 Shop All
-              </button>
+               <a href="products.html" style="text-decoration: none;">
+                   <button class="btn-outline">Shop All</button>
+               </a>
             </div>
 
             <div class="hero-image-placeholder">
@@ -76,26 +78,12 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
             </div>
             
             <div class="about-content">
-                <p>
-                    Denica Perfumery is where discovering your perfect scent feels effortless. We curate authentic local 
-                    perfumes in one refined space, making it easy to explore, match, and shop fragrances that truly reflect 
-                    you.
-                </p>
-                <p>
-                    Finding perfume online doesn't have to be complicated. With personalized scent matching, discovery 
-                    tools, and trusted reviews, Denica guides you gently toward fragrances you'll love — no guessing, no 
-                    overwhelm.
-                </p>
-                <p>
-                    Whether you're searching for a signature scent or exploring something new, Denica offers a curated 
-                    experience where luxury meets ease — thoughtfully selected, quietly confident, and effortlessly 
-                    Malaysian.
-                </p>
+                <p>Denica Perfumery is where discovering your perfect scent feels effortless. We curate authentic local perfumes in one refined space, making it easy to explore, match, and shop fragrances that truly reflect you.</p>
                 
                 <div class="about-footer">
-                    <button class="btn-outline" onclick="window.location.href='quiz/discovery.php';">
-                    Start your journey now
-                    </button>
+                    <a href="quiz/discovery.html" style="text-decoration: none;">
+                        <button class="btn-outline">Start your journey now</button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -105,7 +93,6 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
         <div class="footer-container">
             <div class="footer-subscribe">
                 <h3>Subscribe for exclusivity:</h3>
-                <p>Be the first to know about our special offers, new product launches, and events</p>
                 <form class="subscribe-form" action="subscribe_handler.php" method="POST">
                     <input type="email" name="email" placeholder="Email Address" required>
                     <button type="submit">Sign Up</button>
@@ -121,24 +108,14 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
                         <li><a href="products.php?brand=toxiclab">The Toxic Lab</a></li>
                     </ul>
                 </div>
-
-                <div class="link-group">
-                    <h4>Help</h4>
-                    <ul>
-                        <li><a href="order_status.php">Order Status</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
-                    </ul>
-                </div>
-
                 <div class="link-group">
                     <h4>Staff</h4>
                     <ul>
-                        <li><a href="admin/admin_login.php">Admin Portal</a></li>
+                        <li><a href="admin/admin_login.html">Admin Portal</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-
 </body>
 </html>
