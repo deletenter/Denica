@@ -39,10 +39,10 @@ if ($search !== '') {
 <header class="main-header">
     <div class="logo">Denica</div>
     <nav>
-        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="admin_dashboard.php">Dashboard</a>
         <a href="products.php" class="active">Products</a>
-        <a href="customers.html">Customers</a>
-        <a href="orders.html">Orders</a>
+        <a href="customers.php">Customers</a>
+        <a href="orders.php">Orders</a>
     </nav>
     <div class="admin-profile">👤</div>
 </header>
@@ -167,6 +167,7 @@ if ($search !== '') {
                         <select name="category" required>
                             <option>Woman</option>
                             <option>Man</option>
+                            <option>UNISEX</option>
                         </select>
                     </div>
 
