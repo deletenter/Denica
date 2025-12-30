@@ -60,9 +60,17 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
 
             <div class="filter-group">
                 <h4>Brand</h4>
-                <label class="checkbox-item"><input type="checkbox" class="brand-filter" value="Medin" checked onchange="filterProducts()"> Medin</label>
-                <label class="checkbox-item"><input type="checkbox" class="brand-filter" value="Szindore" checked onchange="filterProducts()"> Szindore</label>
-                <label class="checkbox-item"><input type="checkbox" class="brand-filter" value="Toxic" checked onchange="filterProducts()"> Toxic Lab</label>
+                <label class="checkbox-item">
+                    <input type="checkbox" class="brand-filter" value="Medin" checked onchange="filterProducts()"> Medin
+                </label>
+                
+                <label class="checkbox-item">
+                    <input type="checkbox" class="brand-filter" value="Szindore" checked onchange="filterProducts()"> Szindore
+                </label>
+                
+                <label class="checkbox-item">
+                    <input type="checkbox" class="brand-filter" value="The Toxic Lab" checked onchange="filterProducts()"> The Toxic Lab
+                </label>
             </div>
 
             <div class="filter-group">
