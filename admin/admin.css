@@ -480,3 +480,38 @@ body {
         content: attr(data-label);
     }
 }
+
+/* The white card containing the chart */
+.chart-card {
+    background: #4cae43;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 800px; /* Gives the card a nice dashboard width */
+    text-align: center;
+}
+
+/* The specific square container for the Pie Chart */
+.chart-container {
+    height: 350px; /* Slightly larger for better visibility */
+    width: 350px;  /* Keep width and height equal for a perfect circle */
+    margin: 0 auto; /* This centers the square inside the card */
+    position: relative;
+}
+
+/* Ensure the canvas fills the container */
+#salesChart {
+    width: 100% !important;
+    height: calc(100% - 40px) !important;
+}
+
+/* Smooth transition for hover effects on stat cards */
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

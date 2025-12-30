@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $sql);
 <header class="main-header">
     <div class="logo">Denica</div>
     <nav>
-        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="admin_dashboard.php">Dashboard</a>
         <a href="products.php">Products</a>
         <a href="customers.php" class="active">Customers</a>
         <a href="orders.php">Orders</a>
