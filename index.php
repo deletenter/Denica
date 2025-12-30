@@ -1,5 +1,9 @@
 <?php
-session_start(); 
+session_start();
+
+$cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+
+$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +26,12 @@ session_start();
             
             <nav class="main-nav">
                 <a href="products.php">Perfumes</a>
-                <a href="discovery.php">Discovery</a> 
+                <a href="quiz/discovery.php">Discovery</a>
             </nav>
 
             <div class="search-bar">
-                <form action="search.php" method="GET">
-                    <input type="text" placeholder="Search" name="query"> 
+                <form action="search_handler.php" method="GET" class="search-form">
+                    <input type="text" placeholder="Search" name="query" required> 
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
@@ -35,9 +39,9 @@ session_start();
             <div class="header-utilities">
                 <a href="cart.php" class="cart-link">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">2</span> 
+                    <span class="cart-count"><?php echo $cart_count; ?></span> 
                 </a>
-                <a href="login.php" class="profile-link">
+                <a href="<?php echo $profile_link; ?>" class="profile-link">
                     <i class="fas fa-user-circle"></i>
                 </a>
             </div>
@@ -50,15 +54,19 @@ session_start();
             <p class="subtitle">Discover and shop curated local fragrances — all in one place.</p>
             
             <div class="hero-action">
-                <button class="btn-outline">Shop All</button> 
+               <button class="btn-outline" onclick="window.location.href='products.php';">
+                 Shop All
+              </button>
             </div>
 
-            <div class="hero-image-placeholder"></div>
+            <div class="hero-image-placeholder">
+              <img src="Assets/perfumery.jpg" alt="Denica Perfumery Image">
+            </div>
 
             <div class="brand-logo-grid">
-                <div class="logo-item"><img src="medin_logo.png" alt="Médin Fragrance"></div>
-                <div class="logo-item"><img src="szindore_logo.png" alt="Szindore"></div>
-                <div class="logo-item"><img src="toxic_logo.png" alt="The Toxic Lab"></div>
+                <div class="logo-item"><img src="Assets/medin_logo.jpg" alt="Médin Fragrance"></div>
+                <div class="logo-item"><img src="Assets/szindore_logo.png" alt="Szindore"></div>
+                <div class="logo-item"><img src="Assets/toxiclab.png" alt="The Toxic Lab"></div>
             </div>
         </section>
 
@@ -76,8 +84,7 @@ session_start();
                 <p>
                     Finding perfume online doesn't have to be complicated. With personalized scent matching, discovery 
                     tools, and trusted reviews, Denica guides you gently toward fragrances you'll love — no guessing, no 
-                    overwhelm. From first discovery to seamless checkout, every step is designed to feel smooth, 
-                    intentional, and indulgent.
+                    overwhelm.
                 </p>
                 <p>
                     Whether you're searching for a signature scent or exploring something new, Denica offers a curated 
@@ -86,7 +93,9 @@ session_start();
                 </p>
                 
                 <div class="about-footer">
-                    <button class="btn-journey">Start your journey now</button>
+                    <button class="btn-outline" onclick="window.location.href='quiz/discovery.php';">
+                    Start your journey now
+                    </button>
                 </div>
             </div>
         </section>
@@ -97,8 +106,8 @@ session_start();
             <div class="footer-subscribe">
                 <h3>Subscribe for exclusivity:</h3>
                 <p>Be the first to know about our special offers, new product launches, and events</p>
-                <form class="subscribe-form">
-                    <input type="email" placeholder="Email Address" required>
+                <form class="subscribe-form" action="subscribe_handler.php" method="POST">
+                    <input type="email" name="email" placeholder="Email Address" required>
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
@@ -107,24 +116,24 @@ session_start();
                 <div class="link-group">
                     <h4>Shop</h4>
                     <ul>
-                        <li><a href="#">Medin Fragrance</a></li>
-                        <li><a href="#">Szindore</a></li>
-                        <li><a href="#">The Toxic Lab</a></li>
+                        <li><a href="products.php?brand=medin">Medin Fragrance</a></li>
+                        <li><a href="products.php?brand=szindore">Szindore</a></li>
+                        <li><a href="products.php?brand=toxiclab">The Toxic Lab</a></li>
                     </ul>
                 </div>
 
                 <div class="link-group">
                     <h4>Help</h4>
                     <ul>
-                        <li><a href="#">Order Status</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="order_status.php">Order Status</a></li>
+                        <li><a href="contact.php">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <div class="link-group">
                     <h4>Staff</h4>
                     <ul>
-                        <li><a href="admin_login.php">Admin Portal</a></li>
+                        <li><a href="admin/admin_login.php">Admin Portal</a></li>
                     </ul>
                 </div>
             </div>
