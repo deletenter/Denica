@@ -113,6 +113,12 @@ h1 {
     margin: 40px auto;
 }
 
+.hero-image img {
+    height: 480px;
+    width: auto;
+    padding: 10px;
+}
+
 .brand-logo-grid {
     display: flex;
     justify-content: center;
