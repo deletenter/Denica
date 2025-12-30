@@ -145,18 +145,20 @@ h1 {
     color: #fff;
 }
 
-.hero-image-placeholder {
+.hero-image-placeholder img {
     background-color: #c4c4c4; 
     width: 100%;
     max-width: 950px;
     height: 480px;
     margin: 40px auto;
+
 }
 
-.hero-image img {
-    height: 480px;
-    width: auto;
-    padding: 10px;
+.hero-image-placeholder img {
+    width: 100%;    
+    height: 100%;      
+    object-fit: cover; 
+    display: block;
 }
 
 .brand-logo-grid {
