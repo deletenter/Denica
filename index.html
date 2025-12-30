@@ -14,32 +14,46 @@
     </div>
 
     <header class="global-header">
-        <div class="header-container">
-            <a href="index.html" class="brand-identity">Denica</a> 
-            
-            <nav class="main-nav">
-                <a href="products.html">Perfumes</a>
-               <a href="quiz/discovery.html">Discovery</a>
-            </nav>
+    <div class="header-container">
+        <a href="index.php" class="brand-identity">Denica</a> 
+        
+        <nav class="main-nav">
+            <a href="products.html">Perfumes</a>
+            <a href="quiz/discovery.html">Discovery</a>
+        </nav>
 
-            <div class="search-bar">
-                <form action="products.html" method="GET" class="search-form">
-                        <input type="text" placeholder="Search" name="query" required> 
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-
-            <div class="header-utilities">
-                <a href="cart.html" class="cart-link">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">2</span> 
-                </a>
-                <a href="login.html" class="profile-link">
-                    <i class="fas fa-user-circle"></i>
-                </a>
-            </div>
+        <div class="search-bar">
+            <form action="products.html" method="GET" class="search-form">
+                <input type="text" placeholder="Search" name="query" required> 
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
         </div>
-    </header>
+
+       <div class="header-actions">
+
+    <a href="cart.html" class="cart-link">
+        <i class="fas fa-shopping-bag"></i>
+    </a>
+
+    <!-- PROFILE AREA -->
+    <div class="profile-icon">
+        <?php if (isset($_SESSION['customer_id'])): ?>
+            <div class="profile">
+                <i class="fas fa-user-circle"></i>
+                <?= htmlspecialchars($_SESSION['customer_name']) ?>
+            </div>
+        <?php else: ?>
+            <a href="login.php">
+                <i class="fas fa-user-circle"></i>
+            </a>
+        <?php endif; ?>
+    </div>
+
+</div>
+
+    </div>
+</header>
+
 
     <main class="main-content">
         <section class="hero-section">

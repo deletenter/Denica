@@ -1,5 +1,5 @@
 <?php
-$databaseHost = '10.32.155.253';
+$databaseHost = 'localhost';
 $databaseName = 'denica';
 $databaseUsername = 'root';
 $databasePassword = '';
