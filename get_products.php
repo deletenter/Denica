@@ -31,9 +31,8 @@ if ($result && $result->num_rows > 0) {
         $row['price'] = (float)$row['price'];
         
         // OPTIONAL: Fallback if the specific image doesn't exist
-        // This ensures the site doesn't look broken if you haven't uploaded 'Mahsuri.png' yet.
         if (!file_exists($row['image'])) {
-            $row['image'] = 'Assets/perfumery.jpg'; // Use a default image you know works
+            $row['image'] = 'Assets/perfumery.jpg'; // Use a default image
         }
         
         $products[] = $row;
