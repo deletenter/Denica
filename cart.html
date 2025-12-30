@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Denica - Your Cart</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,7 +13,7 @@
             <a href="index.html" class="brand-identity">Denica</a>
             <nav class="main-nav">
                 <a href="products.html">Perfumes</a>
-                <a href="discovery.html">Discovery</a>
+                <a href="quiz/discovery.html">Discovery</a>
             </nav>
             <div class="header-utilities">
                 <a href="cart.html" class="cart-link">
@@ -31,90 +30,66 @@
     <div id="empty-state" style="display: none; text-align: center; margin-top: 100px;">
         <h2>Your cart is empty</h2>
         <p style="color: #666; margin: 15px 0;">Looks like you haven't found your perfumes yet.</p>
-        <a href="products.html">
-            <button class="btn-continue" style="max-width: 200px;">Start Shopping</button>
+        <a href="products.html" style="text-decoration: none;">
+            <button class="btn-continue" style="max-width: 200px; padding: 15px 30px; background: black; color: white; border: none; cursor: pointer;">Start Shopping</button>
         </a>
     </div>
 
-    <main class="cart-page-container" id="cart-main-content">
-        
-        <section class="cart-items-section">
-            <h1 class="cart-title">Your cart</h1>
-            <p class="continue-shopping">Not ready to checkout? <a href="products.html">Continue Shopping</a></p>
+    <main class="cart-container" id="cart-main-content" style="margin-top: 40px;">
+        <section class="cart-items"> <h1 style="font-size: 2rem; margin-bottom: 10px;">Your cart</h1>
+            <p class="subtitle" style="margin-bottom: 30px;">Not ready to checkout? <a href="products.html" style="color:black;">Continue Shopping</a></p>
 
-            <div class="cart-item">
-                <div class="item-image-placeholder">
-                    <img src="perfume1.jpg" alt="Medin Kirana" style="width:100%; height:100%; object-fit:cover;">
+            <div class="cart-product cart-item"> <div class="img-box" style="width: 100px; height: 100px; background: #eee;">
+                    <img src="perfume1.jpg" alt="Perfume" style="width:100%; height:100%; object-fit:cover; display:block;"> 
                 </div> 
-                <div class="item-details">
-                    <h2 class="item-name">Medin Kirana</h2>
-                    <p class="item-meta">Size: 15ML</p>
-                    <div class="item-meta">
-                        Quantity: <input type="number" class="qty-input" value="1" min="1" style="width: 50px; padding: 5px;">
+                <div class="product-details" style="flex: 1; margin-left: 20px;">
+                    <h3>Medin Kirana</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Size: 15ML</p>
+                    
+                    <div style="margin: 10px 0;">
+                        Quantity: 
+                        <input type="number" class="qty-input" value="1" min="1" style="width: 60px; padding: 5px;">
                     </div>
-                    <p class="item-price">RM 39.00</p>
-                    <button class="btn-remove" onclick="removeItem(this)">Remove</button>
+                    
+                    <p><strong>RM <span class="item-price">39.00</span></strong></p>
+                    
+                    <button class="remove-link" onclick="removeItem(this)" style="background: none; border: none; color: #888; text-decoration: underline; cursor: pointer; padding: 0;">Remove</button>
                 </div>
             </div>
 
-            <div class="order-info-accordion">
-                <h3>Order Information</h3>
-                <div class="accordion-item">
-                    <details open>
-                        <summary class="accordion-header">Return Policy</summary>
-                        <div class="accordion-content">
-                            <p>Returns are accepted within 30 days of purchase.</p>
-                        </div>
-                    </details>
-                </div>
-                <div class="accordion-item">
-                    <details>
-                        <summary class="accordion-header">Shipping Options</summary>
-                        <div class="accordion-content">
-                            <p>Standard delivery takes 3-5 business days via J&T or Poslaju.</p>
-                        </div>
-                    </details>
-                </div>
+            <div class="order-info-accordion" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                <details open style="margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: bold;">Return Policy</summary>
+                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Returns are accepted within 30 days of purchase.</p>
+                </details>
+                <details style="cursor: pointer;">
+                    <summary style="font-weight: bold;">Shipping Options</summary>
+                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">Standard delivery takes 3-5 business days via JnT or Poslaju.</p>
+                </details>
             </div>
         </section>
 
-        <aside class="order-summary-sidebar">
-            <h2>Order Summary</h2>
-            <div class="coupon-box">
-                <input type="text" placeholder="Enter coupon code here">
+        <aside class="order-summary">
+            <h3>Order Summary</h3>
+            <input type="text" placeholder="Enter coupon code here" style="width: 100%; margin-bottom: 20px;">
+            
+            <div class="summary-line price-row">
+                <span>Subtotal</span> 
+                <span id="subtotal-display">RM 39.00</span>
+            </div>
+            <div class="summary-line price-row">
+                <span>Shipping</span> 
+                <span>Calculated at next step</span>
             </div>
             
-            <div class="summary-details">
-                <div class="summary-row">
-                    <span>Subtotal</span> 
-                    <span id="subtotal-display">RM 39.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Shipping</span> 
-                    <span>Calculated at next step</span>
-                </div>
-                <div class="summary-row total-row">
-                    <span>Total</span> 
-                    <span id="total-display">RM 39.00</span>
-                </div>
+            <div class="summary-line total-row">
+                <span>Total</span> 
+                <span id="total-display">RM 39.00</span>
             </div>
 
             <button class="btn-checkout" onclick="validateCheckout()">Continue to checkout</button>
         </aside>
     </main>
-
-    <script>
-        function validateCheckout() {
-            window.location.href = 'register.html';
-        }
-
-        function removeItem(btn) {
-            const item = btn.closest('.cart-item');
-            item.remove();
-        }
-    </script>
-</body>
-</html>
 
 <script>
     // --- 1. MATH LOGIC ---
