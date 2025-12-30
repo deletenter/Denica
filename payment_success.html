@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica - Order Confirmed</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Receipt Specific Styles */
+        .receipt-container {
+            max-width: 800px; /* <--- CHANGED: Wider container (was 600px) */
+            margin: 50px auto;
+            background: #fff;
+            padding: 60px;    /* <--- CHANGED: More padding for a premium feel */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 4rem; /* <--- CHANGED: Larger checkmark */
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem; /* <--- CHANGED: Larger Heading */
+            margin-bottom: 10px;
+        }
+
+        .order-details {
+            text-align: left;
+            margin: 40px 0;
+            border-top: 2px dashed #ddd; /* Thicker separator */
+            border-bottom: 2px dashed #ddd;
+            padding: 30px 0;
+            font-size: 1.1rem; /* <--- CHANGED: Larger general text */
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px; /* More spacing between rows */
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.5rem; /* <--- CHANGED: Big Total Price */
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Buttons Container */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn-print {
+            background: #fff;
+            border: 2px solid #000;
+            color: #000;
+            padding: 15px 40px; /* Larger buttons */
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .btn-home {
+            background: #000;
+            border: 2px solid #000;
+            color: #fff;
+            padding: 15px 40px; /* Larger buttons */
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { 
+                background-color: #fff; 
+                font-size: 12pt; /* Ensure text is readable on paper */
+            }
+            .receipt-container { 
+                max-width: 100%; /* Use full paper width */
+                width: 100%;
+                box-shadow: none; 
+                margin: 0; 
+                padding: 20px; 
+                border: none;
+            }
+            .action-buttons, .global-header, footer { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="receipt-container">
+        <div class="success-icon">✓</div>
+        <h1>Thank you!</h1>
+        <p style="color: #666;">Your order has been received.</p>
+        
+        <div class="order-details">
+            <div class="receipt-row">
+                <span>Order ID:</span>
+                <strong>#DN-2025-8842</strong>
+            </div>
+            <div class="receipt-row">
+                <span>Date:</span>
+                <span id="currentDate"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Payment Method:</span>
+                <span>Credit Card (Visa)</span>
+            </div>
+            
+            <br>
+
+            <div class="receipt-row">
+                <span>Medin Kirana (15ML) x 1</span>
+                <span>RM 39.00</span>
+            </div>
+            <div class="receipt-row">
+                <span>Szindore (15ML) x 1</span>
+                <span>RM 39.00</span>
+            </div>
+            <div class="receipt-row">
+                <span>Shipping (JnT)</span>
+                <span>RM 8.00</span>
+            </div>
+
+            <div class="total-row">
+                <span>TOTAL PAID</span>
+                <span>RM 86.00</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-print" onclick="window.print()">Print Receipt</button>
+            
+            <a href="index.html" class="btn-home">Continue Shopping</a>
+        </div>
+    </div>
+
+    <script>
+        // Automatically put today's date on the receipt
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', dateOptions);
+    </script>
+</body>
+</html>

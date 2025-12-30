@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica - Payment</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body style="display:block;">
+    <div class="header-container" style="padding: 20px 0; border-bottom: 1px solid #eee;">
+        <div style="text-align:center; font-weight:800; font-size:1.5rem;">DENICA</div>
+    </div>
+
+    <div class="checkout-container">
+        <div class="checkout-form">
+            <div class="breadcrumb">
+                <span style="color:#000;">Address</span> &mdash; <span style="color:#000;">Shipping</span> &mdash; <span class="active">Payment</span>
+            </div>
+
+            <h2>Payment Details</h2>
+
+            <div class="payment-tabs">
+                <div class="pay-tab active">Credit Card</div>
+                <div class="pay-tab">PayPal</div>
+                <div class="pay-tab">Apple Pay</div>
+            </div>
+            
+            <form action="payment_success.html" onsubmit="alert('Payment Successful! (Demo)');">
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Cardholder Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" placeholder="Card Number" required>
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:1;">
+                        <select style="width:100%; padding:14px; border:1px solid #ddd;">
+                            <option>Month</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            </select>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <select style="width:100%; padding:14px; border:1px solid #ddd;">
+                            <option>Year</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                            <option>2029</option>
+                            <option>2030</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <input type="text" placeholder="CVC" maxlength="3" required>
+                    </div>
+                </div>
+
+                <button class="login-btn">Pay RM 86.00</button>
+                
+                <p class="secure-notice">This is a demo. No real money will be charged.</p>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-item">
+                <div class="summary-img"></div> <div>
+                    <p style="font-weight:bold;">Medin Kirana</p>
+                    <p style="font-size:0.8rem; color:#666;">15ML</p>
+                </div>
+                <div style="margin-left:auto;">RM 39</div>
+            </div>
+            
+            <div class="summary-item">
+                <div class="summary-img"></div>
+                <div>
+                    <p style="font-weight:bold;">Szindore</p>
+                    <p style="font-size:0.8rem; color:#666;">15ML</p>
+                </div>
+                <div style="margin-left:auto;">RM 39</div>
+            </div>
+
+            <div class="price-row">
+                <span>Subtotal</span>
+                <span>RM 78</span>
+            </div>
+            <div class="price-row">
+                <span>Shipping (JnT)</span>
+                <span>RM 8</span>
+            </div>
+            <div class="total-row">
+                <span>Total</span>
+                <span>RM 86</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
