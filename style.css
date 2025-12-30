@@ -3,11 +3,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Calibri', 'Segoe UI', sans-serif; /* Per assignment style [cite: 497] */
+    font-family: 'Calibri', 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #f4f7f9; /* Light background from SRS Fig 6 & 7 [cite: 300, 302] */
+    background-color: #f4f7f9;
     color: #333;
 }
 
@@ -56,7 +56,6 @@ body {
 }
 
 /* --- Auth Pages (Login & Registration) --- */
-/* This section ensures the UI matches Figure 6 & 7 [cite: 300, 302] */
 
 .login-container, .register-container {
     max-width: 400px;
@@ -65,7 +64,7 @@ body {
     padding: 50px 40px;
     text-align: center;
     border-radius: 4px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Minimalist shadow [cite: 122] */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
 }
 
 h1 {
@@ -113,7 +112,7 @@ input.invalid {
     border-color: #ff4d4d;
 }
 
-/* Options Row: Remember Me & Forgot Password [cite: 311] */
+/* Options Row: Remember Me & Forgot Password */
 .login-options {
     display: flex;
     justify-content: space-between;
@@ -206,7 +205,7 @@ input.invalid {
     gap: 40px;
 }
 
-/* --- Responsive Adjustments [cite: 468] --- */
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .login-container, .register-container {
         margin: 40px 20px;
