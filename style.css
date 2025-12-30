@@ -357,4 +357,35 @@ h1 {
     .hero-image-placeholder {
         height: 250px;
     }
+
+}
+
+/* --- PAGE SPECIFIC: RECEIPT --- */
+.receipt-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: var(--white);
+    padding: 60px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.order-details {
+    text-align: left;
+    margin: 40px 0;
+    border-top: 1px dashed var(--black);
+    border-bottom: 1px dashed var(--black);
+    padding: 30px 0;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
