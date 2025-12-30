@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica - Information</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display:block;">
+    <div class="header-container" style="padding: 20px 0; border-bottom: 1px solid #eee;">
+        <div style="text-align:center; font-weight:800; font-size:1.5rem;">DENICA</div>
+    </div>
+
+    <div class="checkout-container">
+        <div class="checkout-form">
+            <div class="breadcrumb">
+                <span class="active">Address</span> &mdash; <span>Shipping</span> &mdash; <span>Payment</span>
+            </div>
+
+            <h2>Shipping Information</h2>
+            
+            <form action="checkout_shipping.html">
+    
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>First Name</label>
+                        <input type="text" name="fname" placeholder="e.g. Delysha" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Last Name</label>
+                        <input type="text" name="lname" placeholder="e.g. Entusan" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Address Line 1</label>
+                    <input type="text" name="address_1" placeholder="House number, Street name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Address Line 2 (Optional)</label>
+                    <input type="text" name="address_2" placeholder="Apartment, Suite, Unit, etc.">
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:2;">
+                        <label>City</label>
+                        <input type="text" name="city" placeholder="e.g. Kota Samarahan" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Postcode</label>
+                        <input type="text" name="zip" placeholder="e.g. 94300" required>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>State</label>
+                        <select name="state" style="width:100%; padding:14px; border:1px solid #eee;" required>
+                            <option value="">Select State</option>
+                            <option value="JHR">Johor</option>
+                            <option value="KDH">Kedah</option>
+                            <option value="KTN">Kelantan</option>
+                            <option value="MLK">Melaka</option>
+                            <option value="NSN">Negeri Sembilan</option>
+                            <option value="PHG">Pahang</option>
+                            <option value="PRK">Perak</option>
+                            <option value="PLS">Perlis</option>
+                            <option value="PNG">Penang</option>
+                            <option value="SBH">Sabah</option>
+                            <option value="SWK">Sarawak</option>
+                            <option value="SGR">Selangor</option>
+                            <option value="TRG">Terengganu</option>
+                            <option value="KUL">Kuala Lumpur</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Country</label>
+                        <input type="text" name="country" value="Malaysia" readonly style="background-color: #f9f9f9;">
+                    </div>
+                </div>
+
+                <input type="hidden" name="user_id" value="1">
+
+                <button class="login-btn">Continue to shipping</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-item">
+                <div class="summary-img"></div>
+                <div>
+                    <p style="font-weight:bold;">Medin Kirana</p>
+                    <p style="font-size:0.8rem; color:#666;">15ML</p>
+                </div>
+                <div style="margin-left:auto;">RM 39</div>
+            </div>
+            
+            <div class="summary-item">
+                <div class="summary-img"></div>
+                <div>
+                    <p style="font-weight:bold;">Szindore</p>
+                    <p style="font-size:0.8rem; color:#666;">15ML</p>
+                </div>
+                <div style="margin-left:auto;">RM 39</div>
+            </div>
+
+            <div class="price-row">
+                <span>Subtotal</span>
+                <span>RM 78</span>
+            </div>
+            <div class="price-row">
+                <span>Shipping</span>
+                <span>Calc at next step</span>
+            </div>
+            <div class="total-row">
+                <span>Total</span>
+                <span>RM 78</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica - Shipping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display:block;">
+    <div class="header-container" style="padding: 20px 0; border-bottom: 1px solid #eee;">
+        <div style="text-align:center; font-weight:800; font-size:1.5rem;">DENICA</div>
+    </div>
+
+    <div class="checkout-container">
+        <div class="checkout-form">
+            <div class="breadcrumb">
+                <span style="color:#000;">Address</span> &mdash; <span class="active">Shipping</span> &mdash; <span>Payment</span>
+            </div>
+
+            <h2>Shipping Method</h2>
+            
+            <form action="checkout_payment.html">
+                <div class="shipping-option">
+                    <div>
+                        <input type="radio" name="shipping" id="jnt" checked>
+                        <label for="jnt" style="font-weight:bold; margin-left:8px;">JnT Express</label>
+                        <div style="margin-left:25px; font-size:0.8rem; color:#666;">4-7 Business Days</div>
+                    </div>
+                    <span>RM 8.00</span>
+                </div>
+
+                <div class="shipping-option">
+                    <div>
+                        <input type="radio" name="shipping" id="poslaju">
+                        <label for="poslaju" style="font-weight:bold; margin-left:8px;">Poslaju</label>
+                        <div style="margin-left:25px; font-size:0.8rem; color:#666;">3-5 Business Days</div>
+                    </div>
+                    <span>RM 8.00</span>
+                </div>
+
+                <button class="login-btn">Continue to payment</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+             <div class="price-row">
+                <span>Subtotal</span>
+                <span>RM 78</span>
+            </div>
+            <div class="price-row">
+                <span>Shipping</span>
+                <span>RM 8</span>
+            </div>
+            <div class="total-row">
+                <span>Total</span>
+                <span>RM 86</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
