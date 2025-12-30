@@ -70,14 +70,56 @@
                         <p>Upload Image Here</p>
                     </div>
                 </div>
-                <form class="product-form">
-                    <input type="text" placeholder="Product Name">
-                    <input type="text" placeholder="Brand">
-                    <textarea placeholder="Product Description"></textarea>
-                    <select>
-                        <option>Category</option>
-                    </select>
-                    <input type="number" placeholder="Price (RM)">
+                <div class="form-section">
+                <form action="ProductData.php" method="post">
+                    <h2 class="form-title">Add New Products</h2>
+
+                    <div class="field">
+                    <label for="ProductName">Product Name</label>
+                    <br>
+                    <input type="text" name="ProductName" placeholder="Product Name" required>
+                    </div>
+
+                    <div class="field">
+                    <label for="brand">Brand</label>
+                    <br>                
+                    <input type="text" name="brand" placeholder="Brand" required> 
+                    </div>
+
+                    <div>
+                        <label for="scentProfile">Scent Profile</label>
+                        <br>
+                        <select name="scentProfile" required>
+                            <option>Floral</option>
+                            <option>Fruity</option>
+                            <option>Citrus</option>
+                            <option>Woody</option>
+                            <option>Fresh</option>  
+                            <option>Musky</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                    <label for="description">Description</label>
+                    <br>
+                    <textarea name="description" placeholder="Product Description" required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="category">Category</label>
+                        <br>
+                        <select name="category" required>
+                            <option>Woman</option>
+                            <option>Man</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                    <label for="price">Price (RM)</label>
+                    <br>
+                    <input type="number" name="price" placeholder="Price (RM)" step="0.01" inputmode="decimal" required>
+                    </div>
+
                     <div class="form-buttons">
                         <button type="submit" class="confirm-btn">+ Add New Product</button>
                         <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
