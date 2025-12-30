@@ -1,40 +1,35 @@
 <?php
-// Enable error reporting for debugging
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 session_start();
 
-// Optional: check if admin is logged in
-// if (!isset($_SESSION['admin_logged_in'])) {
-//     header("Location: admin_login.php");
-//     exit;
-// }
-
-// Connect to database
 $conn = mysqli_connect("localhost", "root", "", "denica");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Total products
-$totalProductsQuery = mysqli_query($conn, "SELECT COUNT(*) AS total FROM item");
-$totalProductsRow = mysqli_fetch_assoc($totalProductsQuery);
-$totalProducts = $totalProductsRow['total'] ?? 0;
+// Stats queries
+$totalProducts = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM item"))['total'] ?? 0;
+$totalCustomers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM customers"))['total'] ?? 0;
+$recentOrders = mysqli_query($conn, "SELECT o.OrderID, c.FullName AS CustomerName, o.GrandTotal, o.Status 
+                    FROM orders o JOIN customers c ON o.CustomerID = c.CustomerID 
+                    ORDER BY o.OrderDate DESC LIMIT 5");
 
-// Total customers
-$totalCustomersQuery = mysqli_query($conn, "SELECT COUNT(*) AS total FROM customers");
-$totalCustomersRow = mysqli_fetch_assoc($totalCustomersQuery);
-$totalCustomers = $totalCustomersRow['total'] ?? 0;
+// --- DATA FOR CHART ---
+// Fetching revenue for the last 7 days
+$chartDataSQL = "SELECT DATE(OrderDate) as date, SUM(GrandTotal) as daily_total 
+                 FROM orders 
+                 WHERE OrderDate >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                 GROUP BY DATE(OrderDate) 
+                 ORDER BY DATE(OrderDate) ASC";
+$chartResult = mysqli_query($conn, $chartDataSQL);
 
-// Recent orders (latest 5)
-$recentOrdersSQL = "SELECT o.OrderID, c.FullName AS CustomerName, o.GrandTotal, o.Status 
-                    FROM orders o
-                    JOIN customers c ON o.CustomerID = c.CustomerID
-                    ORDER BY o.OrderDate DESC
-                    LIMIT 5";
-$recentOrders = mysqli_query($conn, $recentOrdersSQL);
-
+$labels = [];
+$data = [];
+while($row = mysqli_fetch_assoc($chartResult)) {
+    $labels[] = date('M d', strtotime($row['date']));
+    $data[] = (float)$row['daily_total'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +37,7 @@ $recentOrders = mysqli_query($conn, $recentOrdersSQL);
     <meta charset="UTF-8">
     <title>Denica Admin - Dashboard</title>
     <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -53,15 +49,12 @@ $recentOrders = mysqli_query($conn, $recentOrdersSQL);
         <a href="customers.php">Customers</a>
         <a href="orders.php">Orders</a>
     </nav>
-    <div class="admin-profile">
-        👤
-        <a href="admin_logout.php" style="color:#fff; margin-left:10px; text-decoration:none;">Logout</a>
-    </div>
+    <div class="admin-profile">👤 <a href="admin_logout.php" style="color:#fff; margin-left:10px; text-decoration:none;">Logout</a></div>
 </header>
 
 <section class="management-bar">
     <h1>Dashboard Overview</h1>
-    <p>Welcome back, Admin. Here is what's happening with Denica Perfumery today.</p>
+    <p>Welcome back, Admin. Here is what's happening today.</p>
 </section>
 
 <main class="admin-content">
@@ -83,6 +76,11 @@ $recentOrders = mysqli_query($conn, $recentOrdersSQL);
         </div>
     </div>
 
+    <div class="chart-container">
+        <h2>Revenue Trends (Last 7 Days)</h2>
+        <canvas id="salesChart"></canvas>
+    </div>
+
     <div class="recent-activity">
         <h2>Recent Transactions</h2>
         <table class="srs-table">
@@ -95,32 +93,63 @@ $recentOrders = mysqli_query($conn, $recentOrdersSQL);
                 </tr>
             </thead>
             <tbody>
-                <?php if($recentOrders && mysqli_num_rows($recentOrders) > 0): ?>
+                <?php if(mysqli_num_rows($recentOrders) > 0): ?>
                     <?php while($row = mysqli_fetch_assoc($recentOrders)): ?>
                         <tr>
-                            <td><?= htmlspecialchars($row['OrderID']) ?></td>
+                            <td><?= $row['OrderID'] ?></td>
                             <td><?= htmlspecialchars($row['CustomerName']) ?></td>
                             <td>RM <?= number_format($row['GrandTotal'], 2) ?></td>
                             <td>
-                                <?php 
-                                    if($row['Status'] == 'Completed') echo '<span class="status-completed">Completed</span>';
-                                    elseif($row['Status'] == 'Pending') echo '<span class="status-active">Pending</span>';
-                                    else echo htmlspecialchars($row['Status']);
-                                ?>
+                                <span class="<?= $row['Status'] == 'Completed' ? 'status-completed' : 'status-active' ?>">
+                                    <?= $row['Status'] ?>
+                                </span>
                             </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <tr>
-                        <td colspan="4" style="text-align:center;">No recent transactions</td>
-                    </tr>
+                    <tr><td colspan="4" style="text-align:center;">No recent transactions</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
 </main>
 
+<script>
+const ctx = document.getElementById('salesChart').getContext('2d');
+new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: <?php echo json_encode($labels); ?>,
+        datasets: [{
+            label: 'Daily Revenue (RM)',
+            data: <?php echo json_encode($data); ?>,
+            borderColor: '#1a1a1a',
+            backgroundColor: 'rgba(26, 26, 26, 0.05)',
+            borderWidth: 3,
+            tension: 0.4, // Makes the line smooth
+            fill: true,
+            pointBackgroundColor: '#1a1a1a',
+            pointRadius: 5
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: { color: '#eee' }
+            },
+            x: {
+                grid: { display: false }
+            }
+        }
+    }
+});
+</script>
+
 </body>
 </html>
-
-<?php mysqli_close($conn); ?>
