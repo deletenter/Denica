@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfumes | Denica</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f7f9;
+      color: #333;
+      font-family: 'Calibri', 'Segoe UI', sans-serif;
+    }
+
+    .global-header {
+      background-color: #000;
+      padding: 12px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .global-header .brand-identity,
+    .global-header .main-nav a,
+    .global-header .header-utilities a {
+      color: #fff;
+    }
+
+    .product-container {
+      display: flex;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 60px auto;
+      align-items: flex-start;
+    }
+
+    .product-image {
+      flex: 1;
+      background-color: #ddd;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    .product-details {
+      flex: 1;
+    }
+
+    .product-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .product-title-row h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .review-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .review-buttons a {
+      background: #eee;
+      color: #333;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid #ccc;
+    }
+    .review-buttons a:hover {
+      background: #ddd;
+    }
+
+    .product-details .price {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .product-details p {
+      margin-bottom: 25px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .size-options button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+    }
+    .size-options button:hover {
+      background-color: #eee;
+    }
+
+    .action-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .btn-add {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex: 1;
+    }
+    .btn-add:hover {
+      background: #333;
+    }
+
+    .quantity-control {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .quantity-label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .quantity-buttons {
+      display: flex;
+      align-items: center;
+    }
+    .quantity-buttons button {
+      padding: 6px 12px;
+      font-size: 1rem;
+      background: #eee;
+      border: none;
+      cursor: pointer;
+    }
+    .quantity-buttons span {
+      margin: 0 10px;
+      font-size: 1rem;
+    }
+
+    .shipping-info {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #666;
+      display: flex;
+      gap: 20px;
+    }
+    .shipping-info p,
+    .shipping-info a {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="global-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-identity">Denica</a>
+      <nav class="main-nav">
+        <a href="products.html">Perfumes</a>
+        <a href="quiz/discovery.html">Discovery</a>
+      </nav>
+      <div class="search-bar">
+        <form action="search_results.html" method="GET">
+          <input type="text" placeholder="Search" name="query">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="header-utilities">
+        <a href="cart.html" class="cart-link">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count">2</span>
+        </a>
+        <a href="login.html" class="profile-link">
+          <i class="fas fa-user-circle"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="product-container">
+      <!-- Left: Image -->
+      <div class="product-image">
+        Product Image
+      </div>
+
+      <!-- Right: Details -->
+      <div class="product-details">
+        <div class="product-title-row">
+          <h2>Perfume Name</h2>
+          <div class="review-buttons">
+            <a href="review.html">♥ Rating & Reviews</a>
+          </div>
+        </div>
+
+        <div class="price">From RM 39</div>
+        <p>
+          XX is a fragrance that celebrates tranquility, elegance, and the harmonious beauty of nature.
+          It is not just a scent, but a calming experience — one that connects the wearer to the serene,
+          grounded rhythms of the natural world. This fragrance is for those who seek clarity and balance,
+          finding peace in simplicity. Inspired by the pure beauty of untouched landscapes, Medin Kirana
+          embodies the spirit of mindfulness and grace.
+        </p>
+
+        <div class="size-options">
+          <span style="font-weight: 600;">Size</span><br><br>
+          <button>15</button>
+          <button>30</button>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-add">Add to Cart</button>
+          <div class="quantity-control">
+            <span class="quantity-label">Quantity</span>
+            <div class="quantity-buttons">
+              <button id="decrease">-</button>
+              <span id="quantity">1</span>
+              <button id="increase">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="shipping-info">
+          <p>Free standard shipping</p>
+          <a href="products.html" style="color: #333; text-decoration: underline;">Free Returns</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ✅ Make quantity buttons interactive
+    const decreaseBtn = document.getElementById('decrease');
+    const increaseBtn = document.getElementById('increase');
+    const quantitySpan = document.getElementById('quantity');
+
+    decreaseBtn.addEventListener('click', () => {
+      let current = parseInt(quantitySpan.textContent);
+      if (current > 1) {
+        quantitySpan.textContent = current - 1;
+      }
+    });
+
+    increaseBtn.addEventListener('click', () => {
+      let current = parseInt(quantitySpan.textContent);
+      quantitySpan.textContent = current + 1;
+    });
+  </script>
+
+</body>
+</html>
