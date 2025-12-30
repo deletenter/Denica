@@ -82,25 +82,31 @@ window.onload = fetchProducts;
 
 /* --- AUTO-FILTER FROM URL (Footer Links) --- */
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Get the brand from the URL (e.g., ?brand=medin)
+    // 1. Get the brand from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const brandToSelect = urlParams.get('brand');
 
     // 2. If a brand exists in the URL...
     if (brandToSelect) {
-        // Find the checkbox with that value (looks for <input value="medin">)
-        // Make sure your checkboxes in HTML have value="medin", value="szindore", etc.
-        const checkbox = document.querySelector(`input[value="${brandToSelect}"]`);
+        
+        // --- FIX STARTS HERE ---
+        // A. Uncheck ALL boxes first so we isolate the selected brand
+        const allCheckboxes = document.querySelectorAll('.brand-filter');
+        allCheckboxes.forEach(box => {
+            box.checked = false;
+        });
+        // --- FIX ENDS HERE ---
 
-        // 3. Check the box and trigger the filter
-        if (checkbox) {
-            checkbox.checked = true;
+        // B. Find the specific checkbox (Now matches "Medin" or "The Toxic Lab")
+        // We use quotes around value to handle spaces in "The Toxic Lab"
+        const targetCheckbox = document.querySelector(`input[value="${brandToSelect}"]`);
+
+        // C. Check ONLY that box and trigger filter
+        if (targetCheckbox) {
+            targetCheckbox.checked = true;
             
-            // Check if your main filter function exists before running it
             if (typeof filterProducts === "function") {
                 filterProducts(); 
-            } else {
-                console.log("filterProducts function not found");
             }
         }
     }
