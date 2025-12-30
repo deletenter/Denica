@@ -389,3 +389,394 @@ h1 {
     justify-content: space-between;
     margin-bottom: 15px;
 }
+
+/* --- PAGE SPECIFIC: PRODUCTS --- */
+
+
+/* Main Container: Sidebar + Products Area */
+.container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 5%;
+    gap: 60px;
+}
+
+/* Sidebar Filters */
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.clear-filters {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: #888;
+    cursor: pointer;
+}
+
+.filter-group {
+    margin-bottom: 35px;
+}
+
+.filter-group h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+    color: #555;
+}
+
+.checkbox-item input {
+    width: 16px;
+    height: 16px;
+    accent-color: #000;
+}
+
+/* Products Main Area */
+.products-area {
+    flex-grow: 1;
+}
+
+.sort-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sort-dropdown {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.item-count {
+    font-size: 0.85rem;
+    color: #777;
+    font-weight: 500;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px 25px;
+}
+
+.product-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1.2;
+    background-color: #e0e0e0;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.brand-tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-info {
+    padding: 5px 0;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.p-name {
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.p-size {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.p-price {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.load-more-btn {
+    background: transparent;
+    border: 1px solid #000;
+    padding: 15px 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.load-more-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Adjustments for the specific navigation in products.html */
+.header-wrapper .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #000; /* Darker header look */
+    color: #fff;
+}
+
+.header-wrapper .brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header-wrapper .nav-link {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.header-wrapper .search-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 25px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* --- 1. IMPORTS & VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --border-color: #eeeeee;
+    --text-muted: #666666;
+    --bg-gray: #FAFAFA;
+    --placeholder-gray: #e0e0e0;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif; /* Clean, modern body font */
+}
+
+/* --- 2. SINGLE GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background-color: var(--bg-gray);
+    line-height: 1.6;
+    display: block; /* Ensures layout renders correctly */
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* --- 3. NAVIGATION --- */
+.global-header {
+    background-color: var(--black);
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.brand-identity, .logo {
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.main-nav a, .header-utilities a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+}
+
+/* --- 4. SHARED UI ELEMENTS (Buttons & Forms) --- */
+.btn-primary, .login-btn, .btn-checkout, .btn-continue {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 15px 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
+    transition: opacity 0.3s;
+}
+
+.btn-primary:hover, .login-btn:hover { opacity: 0.8; }
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    outline: none;
+}
+
+.form-group { margin-bottom: 20px; }
+
+/* --- 5. CHECKOUT & CART LAYOUT --- */
+.checkout-container, .cart-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    padding: 0 20px;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.breadcrumb .active {
+    color: var(--black);
+    font-weight: bold;
+    border-bottom: 1px solid var(--black);
+}
+
+.order-summary {
+    background: var(--white);
+    padding: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.price-row, .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.total-row {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 20px;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- 6. PAYMENT SPECIFIC --- */
+.payment-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+
+.pay-tab {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pay-tab.active { background: #f9f9f9; border-color: var(--black); }
+
+.shipping-option {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+/* --- 7. RECEIPT (PRINT READY) --- */
+@media print {
+    .global-header, .action-buttons, .main-nav { display: none !important; }
+    .receipt-container { width: 100%; border: none; margin: 0; }
+}
+
+/* --- 8. RESPONSIVE --- */
+@media (max-width: 768px) {
+    .checkout-container, .cart-container { grid-template-columns: 1fr; }
+    .global-header { padding: 15px; }
+}
