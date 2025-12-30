@@ -12,7 +12,7 @@
     
     /* Fonts */
     --font-heading: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
+    --font-body: 'Calibri', 'Sagoe UI', sans-serif;
 }
 
 /* --- 2. GLOBAL RESET --- */
@@ -28,88 +28,110 @@ body {
     background-color: var(--white);
 }
 
-/* --- 3. NAVBAR (Matches Wireframe Page 9) --- */
-.navbar {
+/* --- Navigation & Header (Matches style.css) --- */
+.promo-banner {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.global-header {
+    border-bottom: 1px solid #ddd;
+    padding: 12px 5%;
+    position: sticky;
+    top: 0;
+    background: #f4f7f9;
+    z-index: 1000;
+    display: block; /* Ensures flex container inside works */
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    border-bottom: 1px solid var(--border-color);
-    background: var(--white);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-/* --- LOGO STYLING --- */
-.logo {
-    font-family: var(--font-heading);
-    font-weight: 800; /* Keeping the heavy weight from your old style */
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    
-    /* The Fixes: */
-    text-decoration: none; /* Removes the underline */
-    color: var(--black);   /* Removes the "blue ink" color */
-    display: inline-block;
-}
-
-/* Ensure it stays black even after being clicked */
-.logo:visited, .logo:hover, .logo:active {
-    color: var(--black);
-    text-decoration: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #999;
-    margin-right: 20px;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.nav-links a.active {
-    color: var(--black);
-    font-weight: bold;
-    border-bottom: 1px solid var(--black);
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #999;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 5px;
-    width: 300px;
-}
-
-.search-bar input {
-    border: none;
-    outline: none;
-    font-family: var(--font-body);
+    max-width: 1400px;
+    margin: 0 auto;
     width: 100%;
 }
 
-.nav-icons {
+.brand-identity {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800; 
+    text-decoration: none;
+    color: #000; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.main-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase; /* Added to match your style preference */
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    display: flex; 
+    align-items: center;
+    border: 1px solid #ccc; 
+    background-color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.search-form input {
+    border: none; 
+    padding: 8px;
+    outline: none; 
+    font-size: 0.9rem;
+    width: 300px; 
+    font-family: var(--font-body);
+}
+
+.search-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-size: 1rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form button:hover {
+    color: #000;
+}
+
+/* Utilities (Icons) */
+.header-utilities {
     display: flex;
     gap: 20px;
 }
 
-.icon-group {
+.header-utilities a {
+    color: #333;
+    font-size: 1.1rem;
+    text-decoration: none;
     position: relative;
-    cursor: pointer;
 }
 
-.badge {
+.cart-count {
     position: absolute;
     top: -8px;
     right: -8px;
