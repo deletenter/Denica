@@ -47,12 +47,24 @@ body {
     gap: 40px;
 }
 
+/* --- LOGO STYLING --- */
 .logo {
     font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 24px;
+    font-weight: 800; /* Keeping the heavy weight from your old style */
+    font-size: 1.4rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    
+    /* The Fixes: */
+    text-decoration: none; /* Removes the underline */
+    color: var(--black);   /* Removes the "blue ink" color */
+    display: inline-block;
+}
+
+/* Ensure it stays black even after being clicked */
+.logo:visited, .logo:hover, .logo:active {
+    color: var(--black);
+    text-decoration: none;
 }
 
 .nav-links a {
