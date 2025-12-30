@@ -50,7 +50,7 @@
         </div>
     
         <div class="profile-info">
-          <p>Jennie Kim</p>
+          <p id="customer-name">Jennie Kim</p>
           <p>jennibara@gmail.com</p>
           <p>19th Street, Mofuworld,<br/>47200, Tokaido City,<br/>Malaysia</p>
         </div>
@@ -63,7 +63,35 @@
     </div>
   </main>
 
+  <script>
+  document.querySelector('.edit-link').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const nameElement = document.getElementById('customer-name');
+
+    if (nameElement.tagName.toLowerCase() === 'input') return;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = nameElement.textContent;
+    input.id = 'customer-name';
+
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        const newName = document.createElement('p');
+        newName.id = 'customer-name';
+        newName.textContent = input.value;
+        input.replaceWith(newName);
+      }
+    });
+
+    nameElement.replaceWith(input);
+    input.focus();
+  });
+  </script>
+  
 </body>
 </html>
+
 
 
