@@ -12,6 +12,7 @@ if (!$conn) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    // 1. Capture and Clean Data
     $ProductName = trim($_POST['ProductName'] ?? '');
     $brand = trim($_POST['brand'] ?? '');
     $scentProfile = trim($_POST['scentProfile'] ?? '');
@@ -19,32 +20,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $category = $_POST['category'] ?? '';
     $price = (float) ($_POST['price'] ?? 0);
 
-    if ($ProductName === '' || $brand === '' || $scentProfile === '' || 
-    $description === '' || $category === '' || $price <= 0) {
-    die("Missing or invalid form data");
-}
+    // 2. Image Upload Logic
+    $imagePath = '';
+    if (isset($_FILES['ProductImage']) && $_FILES['ProductImage']['error'] === 0) {
+        $uploadDir = 'uploads/';
+        
+        // Create folder if it doesn't exist
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
 
-    // Insert into table
-    $stmt = $conn->prepare("INSERT INTO item (ProductName, Brand, ScentProfile, Description, Category, Price) VALUES (?, ?, ?, ?, ?, ?)");
+        $fileName = time() . '_' . preg_replace("/[^a-zA-Z0-9.]/", "_", basename($_FILES['ProductImage']['name']));
+        $targetFile = $uploadDir . $fileName;
+
+        if (move_uploaded_file($_FILES['ProductImage']['tmp_name'], $targetFile)) {
+            $imagePath = $targetFile;
+        }
+    }
+
+    // 3. Validation
+    if ($ProductName === '' || $brand === '' || $price <= 0) {
+        die("Error: Please fill in all required fields and a valid price.");
+    }
+
+    // 4. Database Insert
+    // NOTE: Ensure your table has an 'ImagePath' column
+    $sql = "INSERT INTO item (ProductName, Brand, ScentProfile, Description, Category, Price, ImagePath) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param(
-    "sssssd",
-    $ProductName,
-    $brand,
-    $scentProfile,
-    $description,
-    $category,
-    $price
-);
+    $stmt->bind_param("sssssds", $ProductName, $brand, $scentProfile, $description, $category, $price, $imagePath);
 
-if ($stmt->execute()) {
-    header("Location: products.php?success=1");
-    exit;
-}
+    if ($stmt->execute()) {
+        header("Location: products.php?success=1");
+        exit;
+    } else {
+        echo "Error executing query: " . $stmt->error;
+    }
 
     $stmt->close();
 }

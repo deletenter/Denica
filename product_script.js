@@ -25,22 +25,23 @@ function renderProducts(list) {
     list.slice(0, visibleCount).forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        
-        // Wrapping the card content in a link that passes the ID
-        card.innerHTML = `
-            <a href="product_detail.php?id=${product.id}" style="text-decoration: none; color: inherit;">
-                <div class="card-image">
-                    <span class="brand-tag">${product.brand}</span>
-                    </div>
-                <div class="card-info">
-                    <div class="info-row">
-                        <span class="p-name">${product.name}</span>
-                        <span class="p-size">${product.size || ''}</span>
-                    </div>
-                    <div class="p-price">RM ${product.price}</div>
+
+
+    card.innerHTML = `
+        <a href="product_detail.php?id=${product.id}" class="card-link">
+            <div class="card-image">
+                <img src="${product.image}" alt="${product.name}">
                 </div>
-            </a>
-        `;
+            <div class="card-text">
+                <span class="card-brand">${product.brand}</span>
+                <h3 class="card-title">${product.name}</h3>
+                <div class="card-meta">
+                    <span class="card-price">RM ${parseFloat(product.price).toFixed(2)}</span>
+                    <span class="card-size">${product.size || '15ML'}</span>
+                </div>
+            </div>
+        </a>
+    `;
         grid.appendChild(card);
     });
 }
@@ -78,3 +79,35 @@ function clearFilters() {
 
 // Initialize when the page finishes loading
 window.onload = fetchProducts;
+
+/* --- AUTO-FILTER FROM URL (Footer Links) --- */
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Get the brand from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const brandToSelect = urlParams.get('brand');
+
+    // 2. If a brand exists in the URL...
+    if (brandToSelect) {
+        
+        // --- FIX STARTS HERE ---
+        // A. Uncheck ALL boxes first so we isolate the selected brand
+        const allCheckboxes = document.querySelectorAll('.brand-filter');
+        allCheckboxes.forEach(box => {
+            box.checked = false;
+        });
+        // --- FIX ENDS HERE ---
+
+        // B. Find the specific checkbox (Now matches "Medin" or "The Toxic Lab")
+        // We use quotes around value to handle spaces in "The Toxic Lab"
+        const targetCheckbox = document.querySelector(`input[value="${brandToSelect}"]`);
+
+        // C. Check ONLY that box and trigger filter
+        if (targetCheckbox) {
+            targetCheckbox.checked = true;
+            
+            if (typeof filterProducts === "function") {
+                filterProducts(); 
+            }
+        }
+    }
+});
