@@ -40,12 +40,12 @@ $customer_name = $_SESSION['customer_name'] ?? '';
             </div>
 
             <div class="header-utilities">
-                <a href="cart.html" class="cart-link">
+                <a href="cart.php" class="cart-link">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count"><?php echo $cart_count; ?></span> 
                 </a>
 
-                <!-- PROFILE: if logged in -> userprofile.php + show name, else -> login.php -->
+                <!--if logged in -> userprofile.php + show name, else -> login.php -->
                 <?php if ($is_logged_in): ?>
                     <a href="userprofile.php" class="profile-link" style="display:flex; align-items:center; gap:8px;">
                         <i class="fas fa-user-circle"></i>
