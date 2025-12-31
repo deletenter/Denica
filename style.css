@@ -550,3 +550,25 @@ input, select {
     .global-header, .main-footer { display: none !important; }
     .receipt-container { border: none; }
 }
+
+.detail-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    border: 1px solid #eeeeee;
+    height: 500px; /* Standard height for perfume shots */
+    overflow: hidden;
+}
+
+.perfume-image {
+    max-width: 80%;  /* Makes the image smaller within the box */
+    max-height: 80%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.perfume-image:hover {
+    transform: scale(1.05);
+}
