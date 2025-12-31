@@ -16,13 +16,13 @@ $customer_name = $_SESSION['customer_name'] ?? '';
 
     <header class="global-header">
         <div class="header-container">
-            <a href="index.html" class="brand-identity">Denica</a>
+            <a href="index.php" class="brand-identity">Denica</a>
             <nav class="main-nav">
                 <a href="products.php">Perfumes</a>
                 <a href="quiz/discovery.html">Discovery</a>
             </nav>
             <div class="header-utilities">
-                <a href="cart.html" class="cart-link">
+                <a href="cart.php" class="cart-link">
                     <i class="fas fa-shopping-bag"></i>
                     <span id="nav-cart-count" class="cart-count">1</span>
                 </a>
@@ -44,17 +44,17 @@ $customer_name = $_SESSION['customer_name'] ?? '';
     <div id="empty-state" style="display: none; text-align: center; margin-top: 100px;">
         <h2>Your cart is empty</h2>
         <p style="color: #666; margin: 15px 0;">Looks like you haven't found your perfumes yet.</p>
-        <a href="products.html" style="text-decoration: none;">
+        <a href="products.php" style="text-decoration: none;">
             <button class="btn-continue" style="max-width: 200px; padding: 15px 30px; background: black; color: white; border: none; cursor: pointer;">Start Shopping</button>
         </a>
     </div>
 
     <main class="cart-container" id="cart-main-content" style="margin-top: 40px;">
         <section class="cart-items"> <h1 style="font-size: 2rem; margin-bottom: 10px;">Your cart</h1>
-            <p class="subtitle" style="margin-bottom: 30px;">Not ready to checkout? <a href="products.html" style="color:black;">Continue Shopping</a></p>
+            <p class="subtitle" style="margin-bottom: 30px;">Not ready to checkout? <a href="products.php" style="color:black;">Continue Shopping</a></p>
 
             <div class="cart-product cart-item"> <div class="img-box" style="width: 100px; height: 100px; background: #eee;">
-                    <img src="perfume1.jpg" alt="Perfume" style="width:100%; height:100%; object-fit:cover; display:block;"> 
+                    <img src="assets/product_placeholder.png" alt="Perfume" style="width:100%; height:100%; object-fit:cover; display:block;"> 
                 </div> 
                 <div class="product-details" style="flex: 1; margin-left: 20px;">
                     <h3>Medin Kirana</h3>
