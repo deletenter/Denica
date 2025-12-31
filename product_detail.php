@@ -65,7 +65,7 @@ if (!empty($product['ImagePath']) && file_exists($product['ImagePath'])) {
         </div>
 
         <div class="header-utilities">
-            <a href="cart.html" class="cart-link">
+            <a href="cart.php" class="cart-link">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cart-count"><?php echo $cart_count; ?></span> 
             </a>
@@ -124,7 +124,7 @@ if (!empty($product['ImagePath']) && file_exists($product['ImagePath'])) {
                 </form>
 
                 <div style="margin-top: 20px;">
-                     <a href="review.html" style="text-decoration: none; color: #666; font-size: 0.9rem;">
+                     <a href="review.php" style="text-decoration: none; color: #666; font-size: 0.9rem;">
                         <i class="fas fa-star"></i> Read Reviews
                      </a>
                 </div>

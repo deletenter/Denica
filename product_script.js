@@ -26,22 +26,28 @@ function renderProducts(list) {
         const card = document.createElement('div');
         card.className = 'product-card';
 
+        // 1. Logic Check: If image is null, empty, or undefined, use the placeholder
+        const imagePath = (product.image && product.image.trim() !== "") 
+                          ? product.image 
+                          : "assets/product_placeholder.png";
 
-    card.innerHTML = `
-        <a href="product_detail.php?id=${product.id}" class="card-link">
-            <div class="card-image">
-                <img src="${product.image}" alt="${product.name}">
+        card.innerHTML = `
+            <a href="product_detail.php?id=${product.id}" class="card-link">
+                <div class="card-image">
+                    <img src="${imagePath}" 
+                         alt="${product.name}" 
+                         onerror="this.src='assets/product_placeholder.png'; this.style.opacity='0.8';">
                 </div>
-            <div class="card-text">
-                <span class="card-brand">${product.brand}</span>
-                <h3 class="card-title">${product.name}</h3>
-                <div class="card-meta">
-                    <span class="card-price">RM ${parseFloat(product.price).toFixed(2)}</span>
-                    <span class="card-size">${product.size || '15ML'}</span>
+                <div class="card-text">
+                    <span class="card-brand">${product.brand}</span>
+                    <h3 class="card-title">${product.name}</h3>
+                    <div class="card-meta">
+                        <span class="card-price">RM ${parseFloat(product.price).toFixed(2)}</span>
+                        <span class="card-size">${product.size || '15ML'}</span>
+                    </div>
                 </div>
-            </div>
-        </a>
-    `;
+            </a>
+        `;
         grid.appendChild(card);
     });
 }
