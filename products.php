@@ -26,7 +26,7 @@ $profile_link = isset($_SESSION['user_id']) ? "userprofile.php" : "login.php";
             <a href="index.php" class="brand-identity">Denica</a> 
             
             <nav class="main-nav">
-                <a href="products.html">Perfumes</a>
+                <a href="products.php">Perfumes</a>
                 <a href="quiz/discovery.html">Discovery</a>
             </nav>
 
@@ -38,7 +38,7 @@ $profile_link = isset($_SESSION['user_id']) ? "userprofile.php" : "login.php";
             </div>
 
             <div class="header-utilities">
-                <a href="cart.html" class="cart-link">
+                <a href="cart.php" class="cart-link">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count"><?php echo $cart_count; ?></span> 
                 </a>
