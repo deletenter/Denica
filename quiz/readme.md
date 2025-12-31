@@ -4,7 +4,7 @@ MODULE: Scent Discovery Quiz
 ========================================================================
 
 HOW TO RUN THE QUIZ:
-1. Open the "index.html" file in Google Chrome.
+1. Open the "index.php" file in Google Chrome.
 2. Click on "Discovery" in the navigation bar OR click "Take Quiz" on the homepage.
 3. Alternatively, you can open "quiz_questions.html" directly.
 
