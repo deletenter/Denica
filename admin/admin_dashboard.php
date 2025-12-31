@@ -37,17 +37,17 @@ $recentOrdersSQL = "SELECT
 $recentOrders = mysqli_query($conn, $recentOrdersSQL);
 
 /**
- * 3. CHART DATA (Last 7 Days Revenue)
+ * 3. CHART DATA (All-Time Revenue)
  */
 $chartDataSQL = "SELECT 
-                    o.OrderDate as date, 
-                    SUM(oi.Quantity * oi.UnitPrice) as daily_total 
-                 FROM orders o
-                 JOIN orderitem oi ON o.OrderID = oi.OrderID
-                 WHERE o.OrderDate >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-                 GROUP BY o.OrderDate 
-                 ORDER BY o.OrderDate ASC";
-$chartResult = mysqli_query($conn, $chartDataSQL);
+    DATE(o.OrderDate) AS date, 
+    SUM(oi.Quantity * oi.UnitPrice) AS daily_total 
+ FROM orders o
+ JOIN orderitem oi ON o.OrderID = oi.OrderID
+ GROUP BY DATE(o.OrderDate)
+ ORDER BY DATE(o.OrderDate) ASC";
+
+$chartResult = mysqli_query($conn, $chartDataSQL); 
 
 $labels = [];
 $data = [];
