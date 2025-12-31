@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$conn = mysqli_connect("localhost", "root", "", "denica");
+$conn = mysqli_connect("localhost", "root", "", "denicadata");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
