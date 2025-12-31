@@ -5,7 +5,7 @@ session_start();
 $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
 // Dynamic profile link logic
-$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
+$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
