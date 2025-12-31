@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2025 at 06:08 PM
+-- Generation Time: Dec 31, 2025 at 04:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `denica`
+-- Database: `denicadata`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,13 @@ CREATE TABLE `admin` (
   `Email` varchar(100) NOT NULL,
   `PasswordHash` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`AdminID`, `Email`, `PasswordHash`) VALUES
+(1, 'admin@denica.com', '$2y$10$CwTycUXWue0Thq9StjUM0uJ8g2XK5x3nJ0Dk7YtN6P3JQq5xEJ9lK');
 
 -- --------------------------------------------------------
 
@@ -122,19 +129,20 @@ CREATE TABLE `item` (
   `ScentProfile` varchar(225) NOT NULL,
   `Description` varchar(225) NOT NULL,
   `Category` varchar(100) NOT NULL,
-  `Price` float NOT NULL
+  `Price` float NOT NULL,
+  `IsDeleted` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`ItemID`, `ProductName`, `Brand`, `ScentProfile`, `Description`, `Category`, `Price`) VALUES
-(2, 'Mahsuri', 'Medin', 'Floral', 'A soft fruity-floral scent with fresh opening and gentle floral heart, perfect for everyday wear.', 'Woman', 35.5),
-(3, 'Mahsuri', 'Medin', 'Floral', 'A soft fruity-floral scent with fresh opening and gentle floral heart, perfect for everyday wear.', 'Woman', 35.5),
-(4, 'Mahsuri', 'Medin Fragrance', 'Fruity-Floral', 'A soft fruity-floral scent with fresh opening and gentle floral heart, perfect for everyday wear.', 'Women', 35.5),
-(5, 'Amaya', 'Szindore', 'Fresh', 'Fresh and slightly aquatic with citrus notes, versatile daily perfume.', 'Women', 40.9),
-(6, 'Serena Aurea', 'The Toxic Lab', 'Musky-Amber', 'Warm musky-amber scent with sophisticated evening appeal.', 'Unisex', 29.9);
+INSERT INTO `item` (`ItemID`, `ProductName`, `Brand`, `ScentProfile`, `Description`, `Category`, `Price`, `IsDeleted`) VALUES
+(2, 'Mahsuri', 'Medin', 'Floral', 'A soft fruity-floral scent with fresh opening and gentle floral heart, perfect for everyday wear.', 'Woman', 35.5, ''),
+(3, 'Mahsuri', 'Medin', 'Floral', 'A soft fruity-floral scent with fresh opening and gentle floral heart, perfect for everyday wear.', 'Woman', 35.5, ''),
+(4, 'Mahsuri', 'Medin Fragrance', 'Fruity-Floral', 'A soft fruity-floral scent with fresh opening and gentle floral heart, perfect for everyday wear.', 'Women', 35.5, ''),
+(5, 'Amaya', 'Szindore', 'Fresh', 'Fresh and slightly aquatic with citrus notes, versatile daily perfume.', 'Women', 40.9, ''),
+(6, 'Serena Aurea', 'The Toxic Lab', 'Musky-Amber', 'Warm musky-amber scent with sophisticated evening appeal.', 'Unisex', 29.9, '1');
 
 -- --------------------------------------------------------
 
@@ -310,6 +318,12 @@ ALTER TABLE `shipment`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `AdminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cart`
