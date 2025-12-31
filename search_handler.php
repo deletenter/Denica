@@ -1,7 +1,10 @@
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-$conn = new mysqli("localhost", "root", "", "denicaData"); // <-- change to your db name
+$conn = mysqli_connect("sql100.infinityfree.com", "if0_40790146", "S9oWrWlbAjuf", "if0_40790146_denicadata");
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 $conn->set_charset("utf8mb4");
 
 // IMPORTANT: match your search bar input name="query"

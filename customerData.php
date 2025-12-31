@@ -1,10 +1,10 @@
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-$databaseHost = 'localhost';
-$databaseName = 'denica';
-$databaseUsername = 'root';
-$databasePassword = '';
+$databaseHost = 'sql100.infinityfree.com';
+$databaseName = 'if0_40790146_denicadata';
+$databaseUsername = 'if0_40790146';
+$databasePassword = 'S9oWrWlbAjuf';
 
 try {
     $conn = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName);

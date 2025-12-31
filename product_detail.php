@@ -1,6 +1,9 @@
 <?php
 // 1. CONNECT TO DATABASE
-$conn = mysqli_connect("localhost", "root", "", "denicaData");
+$conn = mysqli_connect("sql100.infinityfree.com", "if0_40790146", "S9oWrWlbAjuf", "if0_40790146_denicadata");
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 // 2. GET ID FROM URL
 // If no ID is set, default to 0 (or redirect)
