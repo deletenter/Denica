@@ -33,7 +33,7 @@ $customer_name = $_SESSION['customer_name'] ?? '';
             </nav>
 
             <div class="search-bar">
-                <form action="searchsuggest.php" method="GET" class="search-form">
+                <form action="search_handler.php" method="GET" class="search-form">
                     <input type="text" placeholder="Search" name="query" required> 
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>

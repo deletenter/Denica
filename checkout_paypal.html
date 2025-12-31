@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Denica - Wallet Payment (Demo)</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      padding:40px 16px;
+    }
+
+    .wrap{
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid #eee;
+      border-radius:14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      overflow:hidden;
+    }
+
+    .header{
+      padding:18px 20px;
+      border-bottom:1px solid #f0f0f0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .brand{
+      font-weight:900;
+      letter-spacing:0.3px;
+      font-size:16px;
+    }
+
+    .tag{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #e6e6e6;
+      color:#333;
+      background:#fafafa;
+      white-space:nowrap;
+    }
+
+    .content{
+      padding:20px;
+    }
+
+    .title{
+      margin:0 0 6px;
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .sub{
+      margin:0 0 18px;
+      color:#666;
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .summary{
+      border:1px solid #eee;
+      border-radius:12px;
+      padding:14px;
+      background:#fcfcfc;
+      margin-bottom:16px;
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin:10px 0;
+      gap:14px;
+      font-size:14px;
+    }
+
+    .row strong{ font-weight:900; }
+
+    .divider{
+      height:1px;
+      background:#eee;
+      margin:12px 0;
+    }
+
+    .total{
+      font-size:16px;
+    }
+
+    .field{
+      margin:12px 0;
+    }
+
+    .label{
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+      color:#333;
+      font-weight:700;
+    }
+
+    .input{
+      width:100%;
+      padding:12px 12px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      outline:none;
+      font-size:14px;
+      box-sizing:border-box;
+      background:#fff;
+    }
+
+    .input:focus{
+      border-color:#000;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .btn{
+      flex:1;
+      padding:12px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:800;
+      border:2px solid #000;
+      font-size:14px;
+    }
+
+    .btn-primary{
+      background:#000;
+      color:#fff;
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:#000;
+    }
+
+    .note{
+      margin-top:14px;
+      font-size:12px;
+      color:#777;
+      line-height:1.4;
+    }
+
+    .demo-banner{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:12px;
+      background:#fff7e6;
+      border:1px solid #ffe0a6;
+      color:#7a4b00;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="card">
+    <div class="header">
+      <div class="brand">Denica</div>
+      <div class="tag">Wallet Payment (Demo)</div>
+    </div>
+
+    <div class="content">
+      <h1 class="title">Pay securely with Wallet</h1>
+      <p class="sub">
+        This is a prototype payment screen for demonstration only. No real payment is processed.
+      </p>
+
+      <div class="summary">
+        <div class="row"><span>Order ID</span><strong>#DN-2025-8842</strong></div>
+        <div class="row"><span>Items</span><span>2 items</span></div>
+        <div class="divider"></div>
+        <div class="row total"><span>Total</span><strong>RM 86.00</strong></div>
+      </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <input class="input" type="email" placeholder="email@example.com" disabled>
+      </div>
+
+      <div class="field">
+        <label class="label">Confirm Payment</label>
+        <input class="input" type="text" placeholder="This is a demo UI" disabled>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" type="button" onclick="window.location.href='cart.php'">Back</button>
+        <button class="btn btn-primary" type="button" onclick="alert('Demo only: no payment processed');">
+          Pay Now (Demo)
+        </button>
+      </div>
+
+      <div class="demo-banner">
+        Demo notice: This screen is not affiliated with any real payment provider.
+      </div>
+
+      <div class="note">
+        Tip: When you’re ready to accept real payments, use the official provider SDK (e.g., PayPal Checkout)
+        so you never handle wallet credentials directly.
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

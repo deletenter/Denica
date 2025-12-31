@@ -4,8 +4,11 @@ session_start();
 // 1. Check cart count (Defaults to 0 if empty)
 $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
+$is_logged_in = isset($_SESSION['customer_id']);
+$customer_name = $_SESSION['customer_name'] ?? '';
+
 // 2. Dynamic profile link (Login if guest, Profile if logged in)
-$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
+$profile_link = isset($_SESSION['user_id']) ? "userprofile.php" : "login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,9 +42,19 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.html";
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count"><?php echo $cart_count; ?></span> 
                 </a>
-                <a href="<?php echo $profile_link; ?>" class="profile-link">
-                    <i class="fas fa-user-circle"></i>
-                </a>
+
+                <!--if logged in -> userprofile.php + show name, else -> login.php -->
+                <?php if ($is_logged_in): ?>
+                    <a href="userprofile.php" class="profile-link" style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-circle"></i>
+                        <span><?php echo htmlspecialchars($customer_name); ?></span>
+                    </a>
+                <?php else: ?>
+                    <a href="login.php" class="profile-link" style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Login</span>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
