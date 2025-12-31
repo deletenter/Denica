@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Denica Admin - Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">Denica</div>
+        <nav>
+            <a href="admin_dashboard.php" class="active">Dashboard</a>
+            <a href="products.php">Products</a>
+            <a href="customers.php">Customers</a>
+            <a href="orders.php">Orders</a>
+        </nav>
+        <div class="admin-profile">👤</div>
+    </header>
+
+    <section class="management-bar">
+        <h1>Dashboard Overview</h1>
+        <p>Welcome back, Admin. Here is what's happening with Denica Perfumery today.</p>
+    </section>
+
+    <main class="admin-content">
+        <div class="stats-row">
+            <div class="stat-card">
+                <h3>Total Products</h3>
+                <p>24</p>
+                <a href="products.php">Manage Products →</a>
+            </div>
+            <div class="stat-card">
+                <h3>Registered Members</h3>
+                <p>152</p>
+                <a href="customers.php">View Members →</a>
+            </div>
+            <div class="stat-card">
+                <h3>Recent Orders</h3>
+                <p>12</p>
+                <a href="orders.php">Track Orders →</a>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h2>Recent Transactions</h2>
+            <table class="srs-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LX-1001</td>
+                        <td>Amisha Jembu Iloh</td>
+                        <td>RM 129.00</td>
+                        <td><span class="status-active">Processing</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>

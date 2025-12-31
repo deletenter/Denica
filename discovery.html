@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scent Discovery | Denica</title>
+    <link rel="stylesheet" href="quiz_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="promo-banner">
+        END OF SEASON SALE UP TO 40% OFF 
+    </div>
+
+    <header class="global-header">
+        <div class="header-container">
+            <a href="../index.php" class="brand-identity">Denica</a> 
+            
+            <nav class="main-nav">
+                <a href="../products.php">Perfumes</a>
+                <a href="discovery.html">Discovery</a>
+            </nav>
+
+            <div class="search-bar">
+                <form action="search_handler.php" method="GET" class="search-form">
+                    <input type="text" placeholder="Search" name="query" required> 
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="header-utilities">
+                <a href="../cart.php" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">2</span> 
+                </a>
+                <a href="../login.html" class="profile-link">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="quiz-hero">
+        <h1 class="main-title">Scent Discovery Quiz</h1>
+        <h2 class="subtitle">Your scent. Your style.</h2>
+        <p class="description">Discover your perfect perfume personality.</p>
+
+        <button class="btn-primary" onclick="window.location.href='quiz_questions.html'">
+            Take Quiz
+        </button>
+
+        <div class="personality-grid">
+            <div class="landing-card">
+                <div class="img-placeholder">
+                  <img src="../Assets/romantic.png" alt="The Romantic">
+                </div> 
+                  <h3>The Romantic</h3>
+            </div>
+            <div class="landing-card">
+                <div class="img-placeholder">
+                  <img src="../Assets/adventurer.png" alt="The Adventurer">
+                </div>
+                <h3>The Adventurer</h3>
+            </div>
+            <div class="landing-card">
+                <div class="img-placeholder">
+                    <img src="../Assets/classic.png" alt="The Classic">
+                </div>
+                <h3>The Classic</h3>
+            </div>
+            <div class="landing-card">
+                <div class="img-placeholder">
+                    <img src="../Assets/sweetnplayful.png" alt="The Sweet and Playful">
+                </div>
+                <h3>The Sweet & Playful</h3>
+            </div>
+            <div class="landing-card">
+                <div class="img-placeholder">
+                    <img src="../Assets/freespirit.png" alt="The Free Spirit">
+                </div>
+                <h3>The Free Spirit</h3>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
+

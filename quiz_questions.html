@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scent Discovery | Denica</title>
+    
+    <link rel="stylesheet" href="quiz_style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="header-container">
+            <a href="../index.php" class="brand-identity">Denica</a> 
+            </div>
+    </nav>
+
+    <main class="quiz-container">
+        
+        <div class="progress-container">
+            <div id="progressBar" style="width: 20%"></div>
+        </div>
+        <p class="question-count">Question <span id="currentQ">1</span> of 5</p>
+
+        <form id="quizForm">
+            
+            <div class="question-step active" id="step1">
+                <h1>The Vibe</h1>
+                <p class="subtitle">How do you want to feel when you wear your perfume?</p>
+                <div class="card-grid">
+                    <div class="quiz-card" onclick="selectOption(1, 'A', this)">
+                        <div class="img-placeholder"><i class="fas fa-feather"></i></div>
+                        <h3>Dreamy & Graceful</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(1, 'B', this)">
+                        <div class="img-placeholder"><i class="fas fa-bolt"></i></div>
+                        <h3>Bold & Confident</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(1, 'C', this)">
+                        <div class="img-placeholder"><i class="fas fa-briefcase"></i></div>
+                        <h3>Polished & Reliable</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(1, 'D', this)">
+                        <div class="img-placeholder"><i class="fas fa-smile"></i></div>
+                        <h3>Cheerful & Fun</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(1, 'E', this)">
+                        <div class="img-placeholder"><i class="fas fa-leaf"></i></div>
+                        <h3>Relaxed & Carefree</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-step" id="step2">
+                <h1>The Escape</h1>
+                <p class="subtitle">If you could book a trip right now, where would you go?</p>
+                <div class="card-grid">
+                    <div class="quiz-card" onclick="selectOption(2, 'A', this)">
+                        <div class="img-placeholder"><i class="fas fa-home"></i></div>
+                        <h3>Cozy Cottage</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(2, 'B', this)">
+                        <div class="img-placeholder"><i class="fas fa-mountain"></i></div>
+                        <h3>Rugged Mountain</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(2, 'C', this)">
+                        <div class="img-placeholder"><i class="fas fa-hotel"></i></div>
+                        <h3>Luxury Resort</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(2, 'D', this)">
+                        <div class="img-placeholder"><i class="fas fa-ticket-alt"></i></div>
+                        <h3>Theme Park</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(2, 'E', this)">
+                        <div class="img-placeholder"><i class="fas fa-umbrella-beach"></i></div>
+                        <h3>Quiet Beach</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-step" id="step3">
+                <h1>The Scent</h1>
+                <p class="subtitle">Which combination sounds most appealing?</p>
+                <div class="card-grid">
+                    <div class="quiz-card" onclick="selectOption(3, 'A', this)">
+                        <div class="img-placeholder">🌸</div>
+                        <h3>Fresh Blooms</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(3, 'B', this)">
+                        <div class="img-placeholder">🔥</div>
+                        <h3>Spices & Leather</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(3, 'C', this)">
+                        <div class="img-placeholder">🪵</div>
+                        <h3>Amber & Woods</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(3, 'D', this)">
+                        <div class="img-placeholder">🍬</div>
+                        <h3>Vanilla & Fruits</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(3, 'E', this)">
+                        <div class="img-placeholder">🌊</div>
+                        <h3>Ocean Breeze</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-step" id="step4">
+                <h1>The Style</h1>
+                <p class="subtitle">What is your go-to outfit for a confident day?</p>
+                <div class="card-grid">
+                    <div class="quiz-card" onclick="selectOption(4, 'A', this)">
+                        <div class="img-placeholder"><i class="fas fa-tshirt"></i></div>
+                        <h3>Flowy & Elegant</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(4, 'B', this)">
+                        <div class="img-placeholder"><i class="fas fa-motorcycle"></i></div>
+                        <h3>Leather Jacket</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(4, 'C', this)">
+                        <div class="img-placeholder"><i class="fas fa-user-tie"></i></div>
+                        <h3>Tailored Blazer</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(4, 'D', this)">
+                        <div class="img-placeholder"><i class="fas fa-palette"></i></div>
+                        <h3>Cute Patterns</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(4, 'E', this)">
+                        <div class="img-placeholder"><i class="fas fa-running"></i></div>
+                        <h3>Activewear</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-step" id="step5">
+                <h1>The Occasion</h1>
+                <p class="subtitle">When will you wear this fragrance the most?</p>
+                <div class="card-grid">
+                    <div class="quiz-card" onclick="selectOption(5, 'A', this)">
+                        <div class="img-placeholder"><i class="fas fa-wine-glass"></i></div>
+                        <h3>Date Night</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(5, 'B', this)">
+                        <div class="img-placeholder"><i class="fas fa-moon"></i></div>
+                        <h3>Late Night Out</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(5, 'C', this)">
+                        <div class="img-placeholder"><i class="fas fa-building"></i></div>
+                        <h3>Work & Office</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(5, 'D', this)">
+                        <div class="img-placeholder"><i class="fas fa-cocktail"></i></div>
+                        <h3>Brunch & Party</h3>
+                    </div>
+                    <div class="quiz-card" onclick="selectOption(5, 'E', this)">
+                        <div class="img-placeholder"><i class="fas fa-coffee"></i></div>
+                        <h3>Everyday Life</h3>
+                    </div>
+                </div>
+            </div>
+
+<div class="question-step" id="resultStep">
+    <h1>Your Signature Scent</h1>
+    <p class="subtitle">We've analyzed your style. Here is your perfect match.</p>
+    
+    <div class="result-box">
+        <h2 id="resultTitle" style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Calculating...</h2>
+        <p id="resultVibe" style="font-style: italic; color: #888; margin-bottom: 20px;"></p>
+        <p id="resultDesc" style="font-size: 15px; margin-bottom: 30px;"></p>
+
+        <button type="button" class="btn-primary" onclick="saveToProfile()">Save to My Profile</button>
+        
+        <div class="product-recommendation">
+            <p style="text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #999; margin-bottom: 15px;">Recommended For You</p>
+            <div class="product-card">
+                <div class="product-image-box" id="productImage"></div>
+                <div>
+                    <h3 id="productName" style="margin: 0; font-size: 16px; font-family: 'Playfair Display', serif;">Loading...</h3>
+                    <p id="productPrice" style="margin: 5px 0; font-weight: bold; font-size: 14px;">RM 00</p>
+                    <button type="button" class="btn-primary" onclick="alert('Item added to cart!')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" style="background: none; border: none; text-decoration: underline; color: #999; font-size: 11px; margin-top: 30px; cursor: pointer;" onclick="location.reload()">Retake Quiz</button>
+    </div>
+</div>
+
+<script>
+    var userAnswers = [];
+
+    function selectOption(currentStep, answer, element) {
+        var cards = element.parentElement.children;
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('selected');
+        }
+        element.classList.add('selected');
+        userAnswers[currentStep - 1] = answer;
+        
+        setTimeout(function() {
+            showNextQuestion(currentStep);
+        }, 400);
+    }
+
+    function showNextQuestion(currentStep) {
+        document.getElementById('step' + currentStep).classList.remove('active');
+        var nextStep = currentStep + 1;
+        var nextElement = document.getElementById('step' + nextStep);
+
+        if (nextElement) {
+            nextElement.classList.add('active');
+            document.getElementById('currentQ').innerText = nextStep;
+            document.getElementById('progressBar').style.width = (nextStep * 20) + "%";
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        var counts = { A:0, B:0, C:0, D:0, E:0 };
+        userAnswers.forEach(ans => counts[ans]++);
+
+        var winner = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+        var data = {
+            'A': ["The Romantic", "Soft, feminine, elegant", "Fresh Blooms & Powdery Musks", "The Romantic Discovery Set", "fa-heart"],
+            'B': ["The Adventurer", "Bold, daring, energetic", "Spicy Leather & Deep Woods", "The Adventurer Discovery Set", "fa-mountain"],
+            'C': ["The Classic", "Timeless, sophisticated", "Amber, Clean Woods & Citrus", "The Classic Discovery Set", "fa-clock"],
+            'D': ["The Sweet & Playful", "Fun, cheerful, approachable", "Vanilla, Fruits & Gourmand", "Sweet & Playful Set", "fa-candy-cane"],
+            'E': ["The Free Spirit", "Fresh, natural, relaxed", "Ocean Breeze & Zesty Citrus", "Free Spirit Discovery Set", "fa-leaf"]
+        };
+
+        document.getElementById('resultTitle').innerText = data[winner][0];
+        document.getElementById('resultVibe').innerText = data[winner][1];
+        document.getElementById('resultDesc').innerText = "Your perfect scent is a blend of " + data[winner][2];
+        document.getElementById('productName').innerText = data[winner][3];
+        document.getElementById('productPrice').innerText = "RM 30";
+        document.getElementById('productImage').innerHTML = '<i class="fas ' + data[winner][4] + '" style="color: #555; font-size: 24px;"></i>';
+
+        document.getElementById('resultStep').classList.add('active');
+        document.querySelector('.question-count').style.display = 'none';
+        document.querySelector('.progress-container').style.display = 'none';
+    }
+
+    // THE FIX: Direct redirect with alert
+    function saveToProfile() {
+        alert("Saved to profile!");
+        window.location.href = "../quizresults.html"; 
+    }
+</script>
+</body>
+</html>

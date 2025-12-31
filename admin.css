@@ -1,0 +1,517 @@
+/* --- Global Styles --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8; /* Light gray background seen in SRS */
+    color: #333;
+}
+
+/* --- Global Header (Black Top Bar) --- */
+.main-header { 
+    background: #000; 
+    color: #fff; 
+    padding: 12px 50px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .logo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.main-header nav a { 
+    color: #888; 
+    text-decoration: none; 
+    margin: 0 15px; 
+    font-size: 14px; 
+    transition: 0.3s;
+}
+
+.main-header nav a:hover, .main-header nav a.active { 
+    color: #fff; 
+}
+
+.admin-profile { 
+    font-size: 18px; 
+    cursor: pointer; 
+}
+
+/* --- Dark Management Bar (Title & Search) --- */
+.management-bar { 
+    background: #1a1a1a; /* Dark gray section from Figure 21 */
+    color: white; 
+    padding: 35px 50px; 
+}
+
+.management-bar h1 { 
+    margin: 0 0 15px 0; 
+    font-size: 24px; 
+    font-weight: 500; 
+}
+
+.search-box { 
+    background: #000; 
+    padding: 8px 12px; 
+    width: 320px; 
+    border: 1px solid #333;
+    display: flex; 
+    align-items: center;
+    border-radius: 2px;
+}
+
+.search-box input { 
+    background: transparent; 
+    border: none; 
+    color: white; 
+    margin-left: 10px; 
+    width: 100%; 
+    outline: none;
+}
+
+/* --- Main Content Layout --- */
+.admin-content { 
+    padding: 25px 50px; 
+}
+
+.action-row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px; 
+}
+
+.sort-dropdown {
+    font-size: 14px;
+    color: #666;
+}
+
+.add-btn { 
+    background: #fff; 
+    color: #000; 
+    padding: 8px 16px; 
+    border: 1px solid #ccc; 
+    cursor: pointer; 
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.add-btn:hover {
+    background: #eee;
+}
+
+/* --- SRS Tables  --- */
+.srs-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: white; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.srs-table th { 
+    background: #f8f9fa; 
+    padding: 12px; 
+    text-align: left; 
+    font-size: 12px; 
+    color: #555; 
+    border-bottom: 2px solid #eee;
+    text-transform: uppercase;
+}
+
+.srs-table td { 
+    padding: 15px; 
+    border-bottom: 1px solid #eee; 
+    font-size: 13px; 
+}
+
+.img-placeholder {
+    width: 40px;
+    height: 40px;
+    background: #e0e0e0;
+    border-radius: 4px;
+}
+
+/* --- Filter Tabs  --- */
+.filter-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.tab {
+    padding: 8px 25px;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.tab.active {
+    background: #000;
+    color: #fff;
+}
+
+/* --- Status Labels --- */
+.status-active { color: #1565c0; font-weight: bold; }
+.status-completed { color: #2e7d32; font-weight: bold; }
+
+/* --- Table Utilities (Print/Export Icons) --- */
+.table-utilities button {
+    background: none;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.table-utilities button:hover {
+    background: #eee;
+}
+
+/* --- Add Product Modal  --- */
+.modal { 
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.6); 
+    justify-content: center; 
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-card { 
+    background: #f4f6f8; 
+    width: 850px; 
+    padding: 30px; 
+    border-radius: 2px;
+    position: relative;
+}
+
+.modal-body { 
+    display: flex; 
+    gap: 30px; 
+    margin-top: 20px;
+}
+
+.upload-section { 
+    flex: 1; 
+}
+
+.upload-box { 
+    background: #ccc; 
+    height: 320px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    color: #555;
+    border: 2px dashed #999;
+}
+
+.product-form { 
+    flex: 1.5; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.product-form input, .product-form select, .product-form textarea { 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 2px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.confirm-btn { 
+    background: #000; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none; 
+    cursor: pointer; 
+    flex: 2;
+}
+
+.cancel-btn { 
+    background: white; 
+    border: 1px solid #ccc; 
+    padding: 12px 20px; 
+    cursor: pointer; 
+    flex: 1;
+}
+
+/* Stats Cards for Dashboard */
+.stats-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    flex: 1;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-top: 4px solid #1a1a1a; /* Matches management bar */
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.stat-card a {
+    font-size: 12px;
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.recent-activity h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* --- Global Admin Styles --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+}
+
+/* --- Admin Login Page (New) --- */
+.admin-login-body {
+    background-color: #1a1a1a; /* Dark background per SRS */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.admin-login-card {
+    background: #fff;
+    width: 380px;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.admin-login-header h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+}
+
+.admin-login-header p {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.admin-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.admin-form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    outline: none;
+}
+
+.admin-login-btn {
+    width: 100%;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-login-btn:hover {
+    background: #000;
+}
+
+.admin-login-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.admin-login-footer a {
+    font-size: 0.8rem;
+    color: #888;
+    text-decoration: none;
+}
+
+/* --- Navigation & Tables (Existing) --- */
+.main-header { 
+    background: #000; color: #fff; padding: 12px 50px; 
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.management-bar { 
+    background: #1a1a1a; color: white; padding: 35px 50px; 
+}
+
+.srs-table { 
+    width: 100%; border-collapse: collapse; background: white; 
+}
+
+.srs-table th { background: #f8f9fa; padding: 12px; text-align: left; border-bottom: 2px solid #eee; }
+.srs-table td { padding: 15px; border-bottom: 1px solid #eee; }
+
+/* --- Edit/Delete Buttons --- */
+.edit-btn, .delete-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: 0.2s;
+}
+
+.edit-btn {
+    background-color: #1565c0; /* Blue for edit */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #0d3c7b;
+}
+
+.delete-btn {
+    background-color: #e53935; /* Red for delete */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #ab000d;
+}
+
+/* Optional: Make the action column text-align center */
+.srs-table td:last-child {
+    text-align: center;
+    white-space: nowrap; /* Prevent buttons from wrapping */
+}
+
+/* --- Filter buttons (for transaction/report tabs) --- */
+.filter-buttons a {
+    display: inline-block;
+    padding: 8px 20px;
+    margin-right: 8px;
+    border-radius: 3px;
+    background: #ddd;
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.filter-buttons a.active, .filter-buttons a:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* --- Optional: Responsive table --- */
+@media screen and (max-width: 768px) {
+    .srs-table, .srs-table thead, .srs-table tbody, .srs-table th, .srs-table td, .srs-table tr { 
+        display: block; 
+    }
+
+    .srs-table th {
+        display: none;
+    }
+
+    .srs-table td {
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .srs-table td::before {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        white-space: nowrap;
+        font-weight: bold;
+        content: attr(data-label);
+    }
+}
+
+/* The white card containing the chart */
+.chart-card {
+    background: #c3c3c4;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 800px; /* Gives the card a nice dashboard width */
+    text-align: center;
+}
+
+/* The specific square container for the Pie Chart */
+.chart-container {
+    height: 350px; /* Slightly larger for better visibility */
+    width: 350px;  /* Keep width and height equal for a perfect circle */
+    margin: 0 auto; /* This centers the square inside the card */
+    position: relative;
+}
+
+/* Ensure the canvas fills the container */
+#salesChart {
+    width: 100% !important;
+    height: calc(100% - 40px) !important;
+}
+
+/* Smooth transition for hover effects on stat cards */
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

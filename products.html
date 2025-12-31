@@ -2,76 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Perfumes - Denica</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <title>Denica Admin - Product Management</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <header class="global-header">
-        <div class="header-container">
-            <a href="index.php" class="brand-identity">Denica</a>
-            <nav class="main-nav">
-                <a href="products.php">Perfumes</a>
-                <a href="quiz/discovery.html">Discovery</a>
-            </nav>
-            <div class="header-utilities">
-                <a href="cart.php" class="cart-link">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span id="nav-cart-count" class="cart-count">1</span>
-                </a>
-                <a href="login.html" class="profile-link">
-                    <i class="fas fa-user-circle"></i>
-                </a>
-            </div>
-        </div>
+
+    <header class="main-header">
+        <div class="logo">Denica</div>
+        <nav>
+            <a href="admin_dashboard.php" class="active">Dashboard</a>
+            <a href="products.php" class="active">Products</a>
+            <a href="customers.php">Customers</a>
+            <a href="orders.php">Orders</a>
+        </nav>
+        <div class="admin-profile">👤</div>
     </header>
 
-    <div class="hero-section">
-        <h1>Shop Perfumes</h1>
-        <p>Handpicked timeless fragrances for your curated collection.</p>
+    <section class="management-bar">
+        <h1>Product Management</h1>
+        <div class="search-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Find Product...">
+        </div>
+    </section>
+
+    <main class="admin-content">
+        <div class="action-row">
+            <div class="sort-dropdown">Sort by: <strong>Name A-Z</strong> ▾</div>
+            <button class="add-btn" onclick="openModal()">+ Add New Product</button>
+        </div>
+
+        <table class="srs-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Scent Profile</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="img-placeholder"></div></td>
+                    <td>Rose Elegance</td>
+                    <td>Medin Fragrance</td>
+                    <td>Floral</td>
+                    <td>Premium rose scent...</td>
+                    <td>Women</td>
+                    <td>129.00</td>
+                    <td>⋮</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <div id="addModal" class="modal">
+        <div class="modal-card">
+            <h2>Add New Product</h2>
+            <div class="modal-body">
+                <div class="upload-section">
+                    <div class="upload-box">
+                        <span>⬆️</span>
+                        <p>Upload Image Here</p>
+                    </div>
+                </div>
+                <div class="form-section">
+
+                <form action="ProductData.php" method="post">
+                    <h2 class="form-title">Add New Products</h2>
+
+                    <div class="field">
+                    <label for="ProductName">Product Name</label>
+                    <br>
+                    <input type="text" name="ProductName" placeholder="Product Name" required>
+                    </div>
+
+                    <div class="field">
+                    <label for="brand">Brand</label>
+                    <br>                
+                    <input type="text" name="brand" placeholder="Brand" required> 
+                    </div>
+
+                    <div>
+                        <label for="scentProfile">Scent Profile</label>
+                        <br>
+                        <select name="scentProfile" required>
+                            <option>Floral</option>
+                            <option>Fruity</option>
+                            <option>Citrus</option>
+                            <option>Woody</option>
+                            <option>Fresh</option>  
+                            <option>Musky</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                    <label for="description">Description</label>
+                    <br>
+                    <textarea name="description" placeholder="Product Description" required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="category">Category</label>
+                        <br>
+                        <select name="category" required>
+                            <option>Woman</option>
+                            <option>Man</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                    <label for="price">Price (RM)</label>
+                    <br>
+                    <input type="number" name="price" placeholder="Price (RM)" step="0.01" inputmode="decimal" required>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="confirm-btn">+ Add New Product</button>
+                        <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="filter-header">
-                <h3>Filters</h3>
-                <span class="clear-filters" onclick="clearFilters()">Clear all</span>
-            </div>
-
-            <div class="filter-group">
-                <h4>Brand</h4>
-                <label class="checkbox-item"><input type="checkbox" class="brand-filter" value="Medin" checked onchange="filterProducts()"> Medin</label>
-                <label class="checkbox-item"><input type="checkbox" class="brand-filter" value="Szindore" checked onchange="filterProducts()"> Szindore</label>
-                <label class="checkbox-item"><input type="checkbox" class="brand-filter" value="Toxic" checked onchange="filterProducts()"> Toxic Lab</label>
-            </div>
-
-            <div class="filter-group">
-                <h4>Price Limit</h4>
-                <input type="range" min="0" max="250" value="250" id="priceRange" oninput="filterProducts()">
-                <div id="priceLabel" style="font-size: 0.8rem; margin-top: 5px;">Max: RM 250</div>
-            </div>
-        </aside>
-
-        <main class="products-area">
-            <div class="sort-bar">
-                <select class="sort-dropdown" id="sortSelect" onchange="sortProducts()">
-                    <option value="popular">Sort By Popular</option>
-                    <option value="low">Price: Low to High</option>
-                    <option value="high">Price: High to Low</option>
-                </select>
-                <div class="item-count" id="itemCount">Loading products...</div>
-            </div>
-
-            <div class="product-grid" id="productGrid"></div>
-
-            <div class="pagination">
-                <button class="load-more-btn" onclick="loadMore()">Load more</button>
-            </div>
-        </main>
-    </div>
-
-    <script src="product_script.js"></script>
+    <script>
+        function openModal() { document.getElementById('addModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('addModal').style.display = 'none'; }
+    </script>
 </body>
 </html>
