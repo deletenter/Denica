@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-// Check cart count
+// Cart count (if you are storing cart in session)
 $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
-// Dynamic profile link logic
-$profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
+// Logged-in check based on your login_process.php
+$is_logged_in = isset($_SESSION['customer_id']);
+$customer_name = $_SESSION['customer_name'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,9 +44,19 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count"><?php echo $cart_count; ?></span> 
                 </a>
-                <a href="<?php echo $profile_link; ?>" class="profile-link">
-                    <i class="fas fa-user-circle"></i>
-                </a>
+
+                <!-- PROFILE: if logged in -> userprofile.php + show name, else -> login.php -->
+                <?php if ($is_logged_in): ?>
+                    <a href="userprofile.php" class="profile-link" style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-circle"></i>
+                        <span><?php echo htmlspecialchars($customer_name); ?></span>
+                    </a>
+                <?php else: ?>
+                    <a href="login.php" class="profile-link" style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Login</span>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
@@ -56,7 +67,7 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
             <p class="subtitle">Discover and shop curated local fragrances — all in one place.</p>
             
             <div class="hero-action">
-               <a href="products.html" style="text-decoration: none;">
+               <a href="products.php" style="text-decoration: none;">
                    <button class="btn-outline">Shop All</button>
                </a>
             </div>
@@ -105,7 +116,7 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
                     <ul>
                         <li><a href="products.php?brand=Medin">Medin Fragrance</a></li>
                         <li><a href="products.php?brand=Szindore">Szindore</a></li>
-                        <li><a href="products.php?brand=The Toxic Lab">The Toxic Lab</a></li>
+                        <li><a href="products.php?brand=The%20Toxic%20Lab">The Toxic Lab</a></li>
                     </ul>
                 </div>
                 <div class="link-group">
@@ -118,6 +129,5 @@ $profile_link = isset($_SESSION['user_id']) ? "profile.php" : "login.php";
         </div>
     </footer>
 </body>
-
 </html>
 
