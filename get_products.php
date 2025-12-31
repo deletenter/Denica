@@ -32,7 +32,7 @@ if ($result && $result->num_rows > 0) {
         
         // OPTIONAL: Fallback if the specific image doesn't exist
         if (!file_exists($row['image'])) {
-            $row['image'] = 'Assets/perfumery.jpg'; // Use a default image
+            $row['image'] = 'Assets/product_placeholder.jpg'; // Use a default image
         }
         
         $products[] = $row;
